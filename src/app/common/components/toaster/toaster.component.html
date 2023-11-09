@@ -1,0 +1,14 @@
+<div class="toast toast-{{ toast.type }}" [style.bottom.px]="index * 100">
+  <div class="toast-group">
+    <div class="toast-icon">
+      <mat-icon svgIcon="toast-{{ toast.type }}"></mat-icon>
+    </div>
+    <div class="toast-message">
+      <h4>{{ toast.title }}</h4>
+      <span>{{ toast.body }}</span>
+    </div>
+    <div class="toast-close">
+      <a class="close" (click)="removeItem.emit(index)">&times;</a>
+    </div>
+  </div>
+</div>

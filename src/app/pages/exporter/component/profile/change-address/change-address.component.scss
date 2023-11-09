@@ -1,0 +1,192 @@
+@import "../../../../../../styles/styles-variables.scss";
+@import "../../../../../../styles/scss/breakpoints.scss";
+
+::ng-deep.mat-dialog-container {
+  padding: 0;
+}
+
+
+::ng-deep .mat-form-field {
+  width: 100%;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+::ng-deep .mat-raised-button {
+  box-shadow: none !important;
+}
+::ng-deep .mat-form-field-outline-end {
+  pointer-events: none;
+  border-width: 1px !important;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  border-width: 1px !important;
+}
+
+::ng-deep .disable .mat-form-field-outline {
+  background: #EFEFEF !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  margin-top: 0 !important;
+  height: 46.5px !important;
+  font-family: "Noto Sans";
+  padding-top: 8px !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.014em;
+  //color: #7B8E99;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex .mat-form-field-outline {
+  border-radius: 2px !important;
+  background: #fafafc ;
+  padding: 0 ;
+}
+
+.tooltip-red {
+  background-color: red;
+}
+
+.group-content {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  box-shadow: 0px 0px 16px rgba(196, 194, 194, 0.12);
+  border-radius: 12px;
+  padding: 2rem 3.75rem;
+  background: #FFFFFF;
+
+  @include max-desktop-up-500 {
+    padding: 1rem 1rem;
+  }
+
+  &__header {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 27px;
+      letter-spacing: -0.014em;
+      color: #3D4147;
+      }
+    .close {
+      width: 12px;
+      cursor: pointer;
+    }
+  }
+
+  &__group-input {
+    display: flex;
+    flex-direction: column;
+
+    .mr-4{
+      font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.004em;
+        color: #3D4147;
+    }
+    .login__item-label {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.004em;
+      color: #3D4147;
+      margin-bottom: 4px;
+    }
+
+    .disable {
+      pointer-events: none;
+    }
+
+    .text-address {
+      outline: none;
+      border: 1px solid #E0E4EF;
+      border-radius: 2px;
+      background: #F4F6FA;
+      height: 120px;
+      padding: 8px 10px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 19px;
+      letter-spacing: 0.014em;
+      color: #3D4147;
+    }
+
+    &__code-address {
+      width: 100%;
+    }
+
+    &__post-code {
+      display: flex;
+      justify-content: space-between;
+      width: 38%;
+      margin-bottom: 12px;
+    }
+
+    &__code-address-display {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      // margin-bottom: 8px;
+
+      .postalCode1Adress1 {
+        width: 48%;
+      }
+
+      .postalCode1Adress2 {
+        width: 48%;
+      }
+
+      .postalCode1Adress3 {
+        margin-bottom: 8px;
+      }
+
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    margin-top: 1rem;
+    column-gap: 8px;
+    justify-content: space-between;
+
+    button {
+      width: 100%;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 19px;
+      letter-spacing: 0.014em;
+      height: 43px;
+    }
+
+    .cancel {
+      color: #2191DB;
+      background: #FFFFFF;
+      border: 1px solid #2191DB;
+
+      &:hover {
+        background: #DDF1FF;
+      }
+    }
+
+    .update {
+      color: #FFFFFF;
+      background: #2191DB;
+
+      &:hover {
+        background: #036DB4;
+      }
+    }
+  }
+}

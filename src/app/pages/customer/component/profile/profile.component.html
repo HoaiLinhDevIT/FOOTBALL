@@ -1,0 +1,106 @@
+<div class="block">
+  <div class="block__header">
+    <app-header [menuSetting]="menuSetting" [dataMenu]="dataMenu" [userName]="customerInfo && customerInfo.userName" [avatar]="customerInfo && customerInfo.avatar"></app-header>
+  </div>
+  <form [formGroup]="customerInfoForm">
+    <div class="block__content">
+      <div class="profile">
+        <div class="profile__header">
+          {{"screen.profile.profile" | translate}}
+        </div>
+        <div class="profile-info">
+          <div class="profile-info__left">
+            <div class="profile-info__left__avatar">
+              <img class="profile-info__left__avatar__img" [src]="customerInfo && (customerInfo.avatar ||  defaultAvatar)" alt="avatar">
+              <label for="file" class="profile-info__left__avatar__desc link">
+                {{"screen.profile.upload-photo" | translate}}
+              </label>
+              <input style="display: none;" type="file" id="file" accept="image/png, image/gif, image/jpeg"
+                (change)="selecFile($event)">
+            </div>
+            <div class="profile-info__left__info">
+              <p class="profile-info__left__info__year">{{"screen.profile.joined" | translate}} {{customerInfo && customerInfo.createDate.toString().slice(0, 4)}}</p>
+              <p class="profile-info__left__info__name">{{nameDisplay}}</p>
+              <p class="profile-info__left__info__change link" (click)="openDialogChangeName()">{{"screen.profile.change-name" | translate}}</p>
+                <!-- <mat-icon class="profile-info__left__info__camera" svgIcon="icon-camera"></mat-icon> -->
+            </div>
+          </div>
+          <div class="profile-info__group">
+            <div class="profile-info__center">
+              <div class="profile-info__center__item">
+                <div class="profile-info__center__item__info">
+                  <label class="profile-info__center__item__info__title">{{"screen.profile.email" | translate}}</label>
+                  <p class="profile-info__center__item__info__content">{{customerInfo && customerInfo.email.length > 45 ? customerInfo.email.replace(customerInfo.email.slice(45), '...') : customerInfo.email}}</p>
+                </div>
+                <div (click)="openDialogChangeEmail()" class="profile-info__center__item__change link">{{"screen.profile.change" | translate}}</div>
+              </div>
+              <div class="profile-info__center__item">
+                <div class="profile-info__center__item__info">
+                  <label class="profile-info__center__item__info__title">{{"screen.profile.phone-number" | translate}}</label>
+                  <p class="profile-info__center__item__info__content">{{phone}}</p>
+                </div>
+                <div class="profile-info__center__item__change link" (click)="openDialogChangePhone()">{{"screen.profile.change" | translate}}</div>
+              </div>
+              <div class="profile-info__center__item">
+                <div class="profile-info__center__item__info">
+                  <label class="profile-info__center__item__info__title">{{"screen.profile.nationality" | translate}}</label>
+                  <p class="profile-info__center__item__info__content">{{customerInfo && customerInfo.country}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="profile-info__right">
+              <div class="profile-info__center__item">
+                <div class="profile-info__center__item__info">
+                  <label class="profile-info__center__item__info__title">{{"screen.profile.address" | translate}}</label>
+                  <p class="profile-info__center__item__info__content">{{customerInfo && customerInfo.address ? customerInfo.address : 'Your address...'}}</p>   
+                </div>
+                <div class="profile-info__center__item__change link"
+                  (click)="openDialogChangeAddress()">{{"screen.profile.edit" | translate}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notification">
+        <div class="notification__header">
+          <h2 style="font-family: Noto Sans;">{{"screen.profile.notification" | translate}}</h2>
+          <p>{{"screen.profile.notification-desc" | translate}}</p>
+        </div>
+        <div class="notification__content">
+            <div class="notification__content__item">
+              <label class="notification__content__item__title">{{"screen.profile.notifi1" | translate}}</label>
+              <mat-slide-toggle formControlName="moneyTransfer" (change)="onToggle($event)"></mat-slide-toggle>
+            </div>
+            <div class="notification__content__item">
+              <label class="notification__content__item__title">{{"screen.profile.notifi2" | translate}}</label>
+              <mat-slide-toggle formControlName="receiveFromSeller" (change)="onToggle($event)"></mat-slide-toggle>
+            </div>
+            <div class="notification__content__item">
+              <label class="notification__content__item__title">{{"screen.profile.notifi3" | translate}}</label>
+              <mat-slide-toggle formControlName="completionFromSeller" (change)="onToggle($event)"></mat-slide-toggle>
+            </div>
+            <div class="notification__content__item">
+              <label class="notification__content__item__title">{{"screen.profile.notifi4" | translate}}</label>
+              <mat-slide-toggle formControlName="confirmationComplete" (change)="onToggle($event)"></mat-slide-toggle>
+            </div>
+            <div class="notification__content__item">
+              <label class="notification__content__item__title">{{"screen.profile.notifi5" | translate}}</label>
+              <mat-slide-toggle formControlName="generalAlert" (change)="onToggle($event)"></mat-slide-toggle>
+            </div>
+            <div class="notification__content__item">
+              <label class="notification__content__item__title">{{"screen.profile.notifi6" | translate}}</label>
+              <mat-slide-toggle formControlName="activateOtp" (change)="onToggle($event)"></mat-slide-toggle>
+            </div>
+        </div>
+      </div>
+
+      <div class="profile-action">
+        <div class="profile-action__close">
+          <div class="profile-action__close__title">{{"screen.profile.close-account" | translate}}</div>
+          <div class="profile-action__close__desc">{{"screen.profile.close-account-desc" | translate}}</div>
+          <button class="profile-action__close__btn" (click)="openDialogCloseAccount()">{{"screen.profile.btn-close-account" | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

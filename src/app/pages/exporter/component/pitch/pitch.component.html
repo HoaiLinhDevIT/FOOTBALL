@@ -1,0 +1,82 @@
+<div class="block">
+    <div class="block__header">
+      <app-header
+        [menuSetting]="menuSetting"
+        [dataMenu]="dataMenu"
+        class="header-customer"
+      ></app-header>
+    </div>
+    <div class="block__content">
+      <div class="group-search">
+        <div class="operator-title">Quản lý sân bóng</div>
+        <div class="operator-add">
+          <button
+            class="btn-icon"
+            mat-raised-button
+            color="primary"
+            (click)="dialogCategory()"
+          >
+            <mat-icon svgIcon="icon-plus"></mat-icon>
+            <span>Thêm mới</span>
+          </button>
+
+        </div>
+        <div class="group-search-btn">
+          <div class="search-input">
+            <mat-label class="lbl-input-search"></mat-label>
+            <mat-form-field>
+              <input
+                matInput
+                maxlength="255"
+                placeholder="Tìm kiếm"
+                type="text"
+                name="text"
+              />
+            </mat-form-field>
+
+          </div>
+
+          <div class="btn-search-inline">
+            <button
+              mat-raised-button
+              class="btn-search"
+              color="primary"
+            >
+              <mat-icon
+                class="icon-search"
+                svgIcon="icon-search-op"
+                matTooltip="Tìm kiếm"
+                matTooltipPosition="below"
+                matTooltipClass="search-tooltip"
+              >
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+        <div class="title">
+            <div class="name">Tên sân</div>
+            <div class="category">Loại sân</div>
+            <div class="address">Địa chỉ</div>
+            <div class="description">Mô tả</div>
+            <div class="option">Tuỳ chọn</div>
+        </div>
+        <div class="group-table" >
+          <div class="pitch" *ngFor="let c of listPitch">
+            <div class="name">
+              <img [src]="c.image" >
+              {{c.pitchName}}</div>
+            <div class="category">{{c.category}}</div>
+            <div class="group-address">
+              <div class="address">{{c.address1}}, {{c.address2}}, {{c.address3}}</div>
+            <div class="address">{{c.address4}}</div>
+            </div>
+            <div class="description">Được đầu tư xây dựng trong trường phổ thông quốc tế VIS, sân bóng Minh Kiệt gồm 4 sân mới và đẹp. Chất lượng cỏ cũng như hệ thống đèn chiếu sáng hiện đại, đạt tiêu chuẩn. Giá cả vô cũng rẻ</div>
+            <div class="option">
+              <mat-icon svgIcon="icon-edit"></mat-icon>
+              <mat-icon svgIcon="icon-delete-op"></mat-icon>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

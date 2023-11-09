@@ -1,0 +1,83 @@
+<div class="container">
+    <form [formGroup]="aFormGroup">
+        <div class="container__header">
+            <label class="container__header-title">{{'screen.trouble-loggin.dialog-email-us.title'| translate}}</label>
+            <mat-icon  svgIcon="icon-close" class="icon-close" mat-dialog-close ></mat-icon>
+        </div>
+        <div class="container__body">
+            <div class="container__body-email">
+                <label class="label-email">{{'screen.trouble-loggin.dialog-email-us.Email-label-add'| translate}}</label>
+                <mat-form-field>
+                    <input matInput
+                        placeholder="{{'screen.trouble-loggin.dialog-email-us.Email-placeholder'| translate}}"
+                        class="ip-email"
+                        formControlName="email"
+                        (focus)="aFormGroup.get('email')?.clearValidators()"
+                        (blur)="validatorEMail()"
+                        autocomplete="off"
+                        maxlength="255"
+                        matTooltip="{{
+                        (aFormGroup.get('email')?.status !== 'VALID' &&
+                        aFormGroup.get('email')?.touched
+                        ? utils.getMessError(aFormGroup.get('email')?.errors)
+                        : '') | translate
+                        }}"
+                        matTooltipClass="{{
+                            aFormGroup.get('email')?.status !== 'VALID' &&
+                            aFormGroup.get('email')?.touched
+                        ? 'example-tooltip-red'
+                        : ''
+                    }}">
+                </mat-form-field>
+            </div>
+            <div class="container__body-detail">
+                <label class="label-detail">{{'screen.trouble-loggin.dialog-email-us.Content-label'| translate}}</label>
+                <mat-form-field>
+                    <textarea matInput style=" resize: none;" 
+                                maxlength="500" placeholder="{{'screen.trouble-loggin.dialog-email-us.detail-placeholder'| translate}}"
+                                formControlName="detail"
+                                (blur)="validatorDetail()"
+                                matTooltip="{{
+                                    (aFormGroup.get('detail')?.status !== 'VALID' &&
+                                    aFormGroup.get('detail')?.touched
+                                    ? utils.getMessError(aFormGroup.get('detail')?.errors)
+                                    : '') | translate
+                                    }}"
+                                    matTooltipClass="{{
+                                        aFormGroup.get('detail')?.status !== 'VALID' &&
+                                        aFormGroup.get('detail')?.touched
+                                    ? 'example-tooltip-red'
+                                    : ''
+                                    }}" ></textarea>
+                </mat-form-field>
+            </div>
+            <div class="container__body-file">
+                <label for="file-upload" class="custom-file-upload">
+                    {{'screen.trouble-loggin.dialog-email-us.add-file'| translate}}
+               </label>
+               <input id="file-upload" type="file" formControlName="fileupload"
+                accept="image/png, image/jpg, image/jpeg, application/pdf"
+                (change)="validateFileType1($event)" name="file"/>
+                <div class="choose-file" *ngIf="!isSelectFile">
+                    <div class="name-file">
+                        {{filename}}
+                      </div>
+                      <div class="delete-file">
+                        <mat-icon class="icon-delete-file" svgIcon="icon-close" matPrefix (click)="deleteFile()">
+                        </mat-icon>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="container__captcha">
+            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [size]="size"
+                [hl]="lang" [theme]="theme" [type]="type" formControlName="recapcha"
+                (ngModelChange)="thecallback()">
+            </ngx-recaptcha2>
+        </div>
+        <div class="container__button">
+            <button mat-dialog-close class="button-close">{{"common.button.cancel" | translate}}</button>
+            <button (click)="submit()" class="button-send-mail"  [ngClass]="!isDisable ? 'disable' : ''">{{'screen.trouble-loggin.dialog-email-us.button-send-mail'| translate}}</button>
+        </div>
+    </form>
+</div>

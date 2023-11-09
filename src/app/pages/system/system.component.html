@@ -1,0 +1,15 @@
+<div class="block">
+  <app-header class="header"
+            [dataMenu]="dataMenu"
+            [menuSetting]="menuSetting"
+></app-header>
+
+</div>
+<nz-layout class="dashboard"
+           *ngIf="loginService.isLoginAsync$.getValue()">
+           <div class="children">
+             <router-outlet *ngIf="loginService.isLoginAsync$.getValue()"></router-outlet>
+           </div>
+  <!-- <div class="main">
+  </div> -->
+</nz-layout>

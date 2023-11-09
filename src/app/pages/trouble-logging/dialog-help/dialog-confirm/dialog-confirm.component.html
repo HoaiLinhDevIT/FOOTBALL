@@ -1,0 +1,66 @@
+<div class="block">
+    <div class="block__top">
+      <div class="top-icon-left">
+        <mat-icon
+          svgIcon="icon-close"
+          (click)="data.negative.click()"
+          class="icon-close"
+        ></mat-icon>
+      </div>
+      <div class="top-icon-center">
+        <mat-icon [svgIcon]="icon" class="icon-alert"></mat-icon>
+      </div>
+      <div class="top-type" [ngClass]="color">{{ type | translate}}</div>
+    </div>
+
+    <div class="block__content" *ngIf="data.content">
+      <p
+        class="content-message"
+        innerHtml="{{ data.content | translate }}"
+      ></p>
+    </div>
+
+    <div class="block__contentchangephone" *ngIf="data.contentchangephone">
+      <p
+        innerHtml="{{ data.contentchangephone | translate }}"></p>
+
+      <ul>
+        <li>{{'screen.trouble-loggin.dialog-2step.item1'| translate}}</li>
+        <li>{{'screen.trouble-loggin.dialog-2step.item2'| translate}}</li>
+        <li>{{'screen.trouble-loggin.dialog-2step.item3'| translate}}</li>
+      </ul>
+
+      <p
+      innerHtml="{{'screen.trouble-loggin.dialog-2step.contentaccept'| translate}}"></p>
+    </div>
+
+    <div *ngIf="isHideCancel; then confirm; else normal"></div>
+    <ng-template #normal>
+      <div class="block__bottom">
+        <button
+        *ngIf="data.positive"
+        mat-raised-button
+        class="btn-ok"
+        (click)="data.positive.click()"
+          >
+          {{ data.positive.title | translate }}
+        </button>
+      </div>
+    </ng-template>
+  
+    <ng-template #confirm>
+      <div class="block__bottom-confirm">
+        <button mat-raised-button class="btn-cancel" (click)="data.negative.click()">
+          {{ data.negative.title | translate }}
+        </button>
+        <button
+          *ngIf="data.positive"
+          mat-raised-button
+          class="btn-ok"
+          (click)="data.positive.click()"
+        >
+          {{ data.positive.title | translate }}
+        </button>
+      </div>
+    </ng-template>
+  </div>

@@ -1,0 +1,58 @@
+<div class="block">
+  <div class="block-header">
+    <app-header [dataMenu]="dataMenu" [menuSetting]="menuSetting"></app-header>
+  </div>
+
+  <div class="operator-container">
+    <div class="group-search">
+      <div class="operator-title">Quản lý người dùng</div>
+
+      <div class="group-search-btn">
+        <div class="search-input">
+          <mat-label class="lbl-input-search"></mat-label>
+          <mat-form-field>
+            <input
+              matInput
+              maxlength="255"
+              placeholder="Tìm kiếm"
+              type="text"
+              name="text"
+              (input)="isShowIcon()"
+              [(ngModel)]="biding"
+            />
+          </mat-form-field>
+          <div class="clear-search">
+            <mat-icon
+              *ngIf="iconClear"
+              svgIcon="icon-close"
+              (click)="clearSearch()"
+            ></mat-icon>
+          </div>
+        </div>
+
+        <div class="btn-search-inline">
+          <button
+            mat-raised-button
+            (click)="handleSearchClk()"
+            class="btn-search"
+            color="primary"
+          >
+            <mat-icon
+              class="icon-search"
+              svgIcon="icon-search-op"
+              matTooltip="Tìm kiếm"
+              matTooltipPosition="below"
+              matTooltipClass="search-tooltip"
+            >
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <app-datatable
+      [tableConfig]="tableBuyerConfig"
+      [dataSource]="dataSource"
+      (handleBtnAction)="handleBtnDataTableClick($event)"
+    ></app-datatable>
+  </div>
+</div>

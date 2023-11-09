@@ -1,0 +1,43 @@
+<div class="header">
+  <div class="container">
+    <div class="header__content">
+      <div class="content-logo">
+        <mat-icon class="content-logo-img" svgIcon="icon-logo-football" [routerLink]="['/home']"></mat-icon>
+      </div>
+      <!-- header phần quản trị viên -->
+      <ul class="content-menu">
+        <ng-container *ngFor="let item of dataMenu">
+          <li class="item-tab" [class.active]="item === selectedItem" (click)="onClickMenuClick(item)">
+            {{ item.category | translate }}
+          </li>
+        </ng-container>
+      </ul>
+      <div class="content-user">
+        <div class="group-user">
+          <div class="group-notification"></div>
+
+          <img *ngIf="avatar; else defaultAvatar" [src]="avatar" class="icon-dropdown-user" nz-dropdown
+            [nzDropdownMenu]="menu" alt="avatar">
+
+          <ng-template #defaultAvatar>
+            <mat-icon class="icon-dropdown-user" svgIcon="anonymous-logo" nz-dropdown [nzDropdownMenu]="menu">
+            </mat-icon>
+          </ng-template>
+          <span>{{userName.length > 10 ? userName.replace(userName.slice(10), '...') : userName}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable class="group-user-menu">
+    <ng-container *ngFor="let item of menuSetting">
+      <li class="item-menu" (click)="onClickMenuClick(item)">
+        <span class="item">
+          <mat-icon class="nav-icon" [svgIcon]="item.icon || ''"></mat-icon>
+          {{ item.category | translate }}
+        </span>
+      </li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>

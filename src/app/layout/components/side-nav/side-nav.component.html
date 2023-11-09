@@ -1,0 +1,26 @@
+<div class="block">
+  <nz-sider
+    [nzCollapsible]="false"
+    [nzCollapsed]="true"
+    [nzTheme]="'light'"
+  >
+    <div class="logo">
+      <mat-icon svgIcon="icon-login-logo"></mat-icon>
+    </div>
+
+    <ul nz-menu class="group-item-menu">
+      <ng-container *ngFor="let item of dataMenu">
+        <li class="item-menu" (click)="onClickMenuClick(item)">
+          <span class="item">
+            <mat-icon class="nav-icon" [svgIcon]="item.icon || ''"></mat-icon>
+            {{ item.category | translate }}
+          </span>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+
+  <ng-template #user>
+    <mat-icon class="color user" svgIcon="icon-user"></mat-icon>
+  </ng-template>
+</div>

@@ -1,0 +1,48 @@
+<div class="block">
+    <div class="group-all">
+      <div class="title">
+          <span>Chỉnh sửa khuyến mãi</span>
+          <mat-icon svgIcon="icon-close" (click)="closeDialog()"></mat-icon>
+      </div>
+      <div class="group-add">
+          <form  [formGroup]="group">
+              <div class="group-content">
+                  <div class="group-content__group-input">
+                      <span>Tên chương trình</span>
+                      <mat-form-field class="group-item">
+                          <input matInput formControlName="name">
+                      </mat-form-field>
+                  </div>
+                  <div class="group-content__group-input">
+                      <span>Tiền giảm</span>
+                      <mat-form-field class="group-item">
+                          <input matInput formControlName="price">
+                      </mat-form-field>
+                  </div>
+                  <div class="group-content__group-input">
+                    <span>Từ ngày</span>
+                    <mat-form-field class="group-item">
+                        <input matInput type="Date" formControlName="date">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Đến ngày</span>
+                    <mat-form-field class="group-item">
+                        <input matInput type="Date" formControlName="toDate">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Hình thức</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="hinhThuc">
+                    </mat-form-field>
+                </div>
+                  <div class="group-btn">
+                      <button mat-button class="cancel" (click)="closeDialog()">Đóng</button>
+                      <button mat-button class="add" (click)="saveUser()">Thêm</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>

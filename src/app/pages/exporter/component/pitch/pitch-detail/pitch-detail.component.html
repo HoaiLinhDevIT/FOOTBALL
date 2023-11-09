@@ -1,0 +1,71 @@
+<div class="block">
+    <div class="group-all">
+      <div class="title">
+          <span>Thêm mới sân bóng</span>
+          <mat-icon svgIcon="icon-close" (click)="closeDialog()"></mat-icon>
+      </div>
+      <div class="group-add">
+          <form [formGroup]="group">
+              <div class="group-content">
+                  <div class="group-content__group-input">
+                      <span>Link hình ảnh</span>
+                      <mat-form-field class="group-item">
+                          <input matInput formControlName="image">
+                      </mat-form-field>
+                  </div>
+                  <div class="group-content__group-input">
+                      <span>Tên sân</span>
+                      <mat-form-field class="group-item">
+                          <input matInput formControlName="pitchName">
+                      </mat-form-field>
+                  </div>
+                  <div class="group-content__group-input">
+                    <span>Giá sân</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="price">
+                    </mat-form-field>
+                </div>
+                  <div class="group-content__group-input">
+                    <span>Loại sân</span>
+                    <select style="height: 35px;" formControlName="category">
+                        <option *ngFor="let a of listCategory">{{a.categoryName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="group-content__group-pro">
+                    <span>Địa chỉ</span> <br>
+                    <select (change)="selectItem($event)" formControlName="address1" >
+                        <option *ngFor="let c of this.Tinh">
+                          {{ c.name }}
+                        </option>
+                      </select>
+                      <select (change)="selectXa($event)" formControlName="address2">
+                        <option *ngFor="let h of this.Huyen">
+                          {{ h.name }}
+                        </option>
+                      </select>
+                      <select formControlName="address3">
+                        <option *ngFor="let x of this.Xa">
+                          {{ x.name }}
+                        </option>
+                      </select>
+                </div>
+                <div class="group-content__group-input">
+                  <span>Địa chỉ cụ thể</span>
+                  <mat-form-field class="group-item">
+                      <input matInput formControlName="address4">
+                  </mat-form-field>
+              </div>
+                  <div class="group-content__group-input">
+                      <span>Mô tả</span>
+                      <textarea style="resize: none" formControlName="description"></textarea>
+                  </div>
+                  <div class="group-btn">
+                      <button mat-button class="cancel" (click)="closeDialog()">Đóng</button>
+                      <button mat-button class="add" (click)="addCategory()">Thêm</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>

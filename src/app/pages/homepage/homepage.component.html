@@ -1,0 +1,274 @@
+<div class="main-wrapper">
+    <div class="container-navbar">
+        <div class="navbar">
+            <div class="navbar-logo">   
+                <mat-icon class="navbar-logo-icon" [svgIcon]="hompageLogo" matPrefix ></mat-icon>
+            </div>
+            <div class="navbar-menu">
+                <div class="header__menu">
+                    <div class="header__menu--item" routerLink="auth/RegisterExporterComponent" *ngIf="checklogin === undefined">
+                        Trở thành đối tác
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-buttons">
+                <div class="nav-buttons-ct">
+                    <div class="buttons-login" routerLink="auth/login" *ngIf="checklogin === undefined">
+                        <p>Đăng Nhập</p>
+                    </div>
+                    <div class="buttons-register" routerLink="auth/register" *ngIf="checklogin === undefined">
+                        <p>Đăng ký</p>
+                    </div>
+                    <div class="cart" *ngIf="checklogin !== undefined">
+                      <mat-icon  svgIcon="icon-user-setting" routerLink="auth/login"
+                      *ngIf="checklogin !== undefined"
+                      ></mat-icon>
+                  </div>
+                    <div class="cart" *ngIf="checklogin !== undefined">
+                        <mat-icon [routerLink]="['/cart']" svgIcon="icon-cart"></mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="slide-show">
+            <div class="group-slide">
+                <div class="slideshow" *ngIf="b === 1">
+                    <img src="https://ik.imagekit.io/tvlk/blog/2017/03/30-dia-diem-du-lich-da-nang-du-la-van-chua-het-hot-trong-nam-2017-phan-1-1-1024x601.jpg?tr=dpr-2,w-675" alt="">
+                </div>
+                <div class="slideshow" *ngIf="b === 2">
+                    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSWdGPTGpTuhvL5VvFIatGVlRquttx5qHHZqlWmoE4DItMTM40SU812YhA233tYFijZKR3DnjhD23LClr0MvoQ04Q3d0t7y" alt="">
+                </div>
+            </div>
+            <div class="group-img">
+                <div class="img-1">
+                    <img src="https://lh5.googleusercontent.com/p/AF1QipPaRGTxfAYkfJYr_CdWJxhSoudzDa3ZAJLgND1s=w540-h312-n-k-no" alt="">
+                    <img src="https://lh5.googleusercontent.com/p/AF1QipOzJRJg3MkY_BzRv5aQEafZmuPJIY9w13TfDYg6=w540-h312-n-k-no" alt="">
+                </div>
+                <div class="img-2">
+                    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQdaj3EDjr-99UGo8EFrr90LDqNCoHH0r0le01XL1Pzlt5vVtWEpP6aRpHdwsgk8FXRm3JdBl9wJyNrR7QPXEgccGaByvj4" alt="">
+                    <img src="https://lh5.googleusercontent.com/p/AF1QipOuf3RBwBOXoNEbVPQiCOPjhEY2jccVc0GWDG9y=w540-h312-n-k-no" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- block 2 start-->
+    <div class="block-mobile">
+        <div class="nav-theme">
+            <div class="mobile-container">
+                <div class="info-service">
+                    <div class="transaction-info">
+                        <h4>
+                            Chúng tôi cung cấp dịch vụ giúp giao dịch của bạn dễ dàng và an toàn
+                        </h4>
+                    </div>
+                    <div class="payment-info">
+                        <p>
+                            Dream Shop là hệ thống mua bán an toàn nhất trên thế giới từ quan điểm rủi ro đối tác - bảo vệ cả người mua và người bán, tất cả các khoản tiền được giao dịch trực tiếp được giữ ở mức tin cậy.
+                        </p>
+                    </div>
+                    <div class="group-slide-image">
+                        <div class="group-image-item">
+                          <img src="../../../assets/images/hotel1.jpg" alt="">
+                            <!-- <span>Người mua và Người bán đồng ý với các điều khoản</span> -->
+                        </div>
+                        <div class="group-image-item">
+                          <img src="../../../assets/images/hotel2.jpg" alt="">
+                            <!-- <span>Người mua gửi thanh toán cho DreamShop</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img src="../../../assets/images/hotel3.jpg" alt="">
+                            <!-- <span>Người bán giao hàng hóa hoặc dịch vụ cho người mua</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img src="../../../assets/images/hotel4.jpg" alt="">
+                            <!-- <span>Người mua phê duyệt hàng hóa hoặc dịch vụ</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img src="../../../assets/images/hotel5.jpg" alt="">
+                            <!-- <span>DreamShop phát hành thanh toán cho người bán</span> -->
+                        </div>
+                    </div>
+                    <div class="group-started-now">
+                        <div class="btn-get-started" [routerLink]="['/pitch']">
+                            <span>Xem thêm</span>
+                            <mat-icon class="icon-started" svgIcon="icon-btn-started" matPrefix></mat-icon>
+                        </div>
+                    </div>
+                    <div class="group-slide-image">
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS6.jpg" alt="" />
+                            <!-- <span>Người mua và Người bán đồng ý với các điều khoản</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS7.jpg" alt="" />
+                            <!-- <span>Người mua gửi thanh toán cho DreamShop</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS8.jpg" alt="" />
+                            <!-- <span>Người bán giao hàng hóa hoặc dịch vụ cho người mua</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS9.jpg" alt="" />
+                            <!-- <span>Người mua phê duyệt hàng hóa hoặc dịch vụ</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img src="../../../assets/images/DS10.jpg" alt="" />
+                            <!-- <span>DreamShop phát hành thanh toán cho người bán</span> -->
+                        </div>
+                    </div>
+                    <div class="group-started-now">
+                        <div class="btn-get-started" [routerLink]="['/product']">
+                            <span>Xem thêm </span>
+                            <mat-icon class="icon-started" svgIcon="icon-btn-started" matPrefix></mat-icon>
+                        </div>
+                    </div>
+
+                    <div class="group-slide-image">
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DSkho1.jpg" alt="" />
+                            <!-- <span>Người mua và Người bán đồng ý với các điều khoản</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DSkho2.jpg" alt="" />
+                            <!-- <span>Người mua gửi thanh toán cho DreamShop</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DSkho3.jpg" alt="" />
+                            <!-- <span>Người bán giao hàng hóa hoặc dịch vụ cho người mua</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DSkho4.jpg" alt="" />
+                            <!-- <span>Người mua phê duyệt hàng hóa hoặc dịch vụ</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img src="../../../assets/images/DSkho5.jpg" alt="" />
+                            <!-- <span>DreamShop phát hành thanh toán cho người bán</span> -->
+                        </div>
+                    </div>
+                    <div class="group-started-now">
+                        <div class="btn-get-started" [routerLink]="['/product']">
+                            <span>Xem thêm </span>
+                            <mat-icon class="icon-started" svgIcon="icon-btn-started" matPrefix></mat-icon>
+                        </div>
+                    </div>
+                    <div class="group-slide-image">
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS1.jpg" alt="" />
+                            <!-- <span>Người mua và Người bán đồng ý với các điều khoản</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS2.jpg" alt="" />
+                            <!-- <span>Người mua gửi thanh toán cho DreamShop</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS3.jpg" alt="" />
+                            <!-- <span>Người bán giao hàng hóa hoặc dịch vụ cho người mua</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img class="mg-r-16" src="../../../assets/images/DS4.jpg" alt="" />
+                            <!-- <span>Người mua phê duyệt hàng hóa hoặc dịch vụ</span> -->
+                        </div>
+                        <div class="group-image-item">
+                            <img src="../../../assets/images/DS5.jpg" alt="" />
+                            <!-- <span>DreamShop phát hành thanh toán cho người bán</span> -->
+                        </div>
+                    </div>
+                    <div class="group-started-now">
+                        <div class="btn-get-started" [routerLink]="['/product']">
+                            <span>Xem thêm </span>
+                            <mat-icon class="icon-started" svgIcon="icon-btn-started" matPrefix></mat-icon>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="group-info-mobile">
+                <div class="group-item">
+                    <div class="group-smart-phone">
+                        <mat-icon class="icon-phone" svgIcon="smart-phone" matPrefix></mat-icon>
+                    </div>
+                </div>
+
+                <div class="group-info-account">
+                    <div class="mask-group">
+                        <div class="group-btn-sign-up">
+                            <h4>Tạo tài khoản miễn phí</h4>
+                            <p>Mua sắm trực tuyến và thanh toán dễ dàng.</p>
+                            <div class="btn-sign-up" routerLink="auth/register">
+                                <span>Đăng ký</span>
+                                <mat-icon class="icon-started" svgIcon="icon-btn-started" matPrefix></mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- group-info-mobile end-->
+            <div class="group-payment-car">
+                <div class="group-item">
+                    <div class="group-payment">
+                        <div class="group-brand">
+                            <div class="ms-pesa">
+                                <img src="../../../assets/icon-svg/icon-logo-football.svg" alt="" />
+                                <span>DreamShop</span>
+                            </div>
+                            <h4>Tìm chỗ nghỉ tiếp theo</h4><br>
+                            <p>Tìm ưu đãi khách sạn, chỗ nghỉ dạng nhà và nhiều hơn nữa...</p>
+                        </div>
+                        <img src="../../../assets/images/backdrop-phong-nen.jpg" alt="" class="img-brand" />
+                    </div>
+                    <div class="group-car">
+                        <img src="../../../assets/images/hotel1.jpg" alt="" />
+                        <div class="group-info-car">
+                            <h4>Đặt khách sạn nhanh chóng và dễ dàng</h4>
+                            <p>
+                                Đến với WEBSITE DU LỊCH chúng tôi giúp bạn tìm sân dễ dàng hơn đi tìm người yêu của bạn <br />Khi mua sắm ở Booking chúng tôi sẽ giúp bạn tránh những sản phẩm kém chất lượng.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="container">
+                    <div class="footer-left">
+                        <div class="logo">
+                            <mat-icon svgIcon="icon-logo-football"></mat-icon>
+                        </div>
+                        <p>Venture.com là một trang web du lịch trực tuyến cho đặt chỗ, được thành lập vào năm 1996. Công ty được vận hành bởi Booking Holdings, có có trụ sở tại Hoa Kỳ, và là nguồn lợi nhuận chính của tập đoàn này. </p>
+                    </div>
+                    <div class="footer-center">
+                        <div class="footer-info">THÔNG TIN
+                            <span class="notes" [routerLink]="['/news']">Tin tức</span>
+                            <span class="notes" >Giới thiệu</span>
+                            <span class="notes">Liên hệ</span>
+                            <span class="notes" [routerLink]="['/tutorial']">Hướng dẫn Size</span>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-content">SHOP MINI
+                            <span class="notes">Hải Sản</span>
+                            <span class="notes">Qùa tặng</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">COPYRIGHT &copy; VERTURE HOTEL</div>
+            </div>
+
+            <!-- group-payment-car end-->
+        </div>
+        <!-- nav-theme end-->
+    </div>
+
+    <!-- block 2 end-->
+</div>
+
+<!--submenu-->
+<!-- <div class="sub--header__wrapper" *ngIf="activeMenu <= 2">
+  <div class="content">
+    <span *ngFor="let item of listContentSubMenu">{{ item }}</span>
+  </div>
+</div> -->
+<!-- --footer-- -->

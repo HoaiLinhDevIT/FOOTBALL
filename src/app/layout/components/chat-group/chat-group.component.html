@@ -1,0 +1,57 @@
+<div class="chat-group">
+    <div class="chat-title">
+      <h4>Chat</h4>
+    </div>
+    <div class="chat-message">
+      <div *ngFor="let row of chatModelList" [ngClass]="{ mine: row.mine }">
+        <div *ngIf="!row.mine; then userTemplate; else meTemplate"></div>
+  
+        <ng-template #userTemplate>
+          <div class="row-message">
+            <mat-icon class="item-image-user" svgIcon="anonymous-logo"></mat-icon>
+            <div class="item-message">
+              <div class="date-time">
+                <span>{{ row.dateTime }}</span>
+              </div>
+              <div class="message">
+                <span>{{ row.message }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+  
+        <ng-template #meTemplate>
+          <div class="row-message-me">
+            <div class="item-message">
+              <div class="date-time">
+                <span>{{ row.dateTime }}</span>
+              </div>
+              <div class="message">
+                <span>{{ row.message }}</span>
+              </div>
+            </div>
+            <mat-icon class="item-image-user" svgIcon="anonymous-logo"></mat-icon>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="chat-input">
+      <div class="group-input">
+        <input
+          class="input-message"
+          placeholder="Type your message"
+          autocomplete="off"
+          [(ngModel)]="message"
+        />
+        <div class="icon-send-msg">
+          <mat-icon
+            matSuffix
+            class="icon"
+            svgIcon="icon-send-message"
+            (click)="sendMessage()"
+          ></mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  

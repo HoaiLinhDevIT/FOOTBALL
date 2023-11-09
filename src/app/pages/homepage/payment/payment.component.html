@@ -1,0 +1,84 @@
+<form [formGroup]="group">
+
+  <div class="block">
+    <div class="payment">
+      <div class="group-cart">
+        <div class="cart">
+          <div class="title-cart">Giỏ hàng <span></span></div>
+          <div class="cart-list">
+            <div class="cart-line">
+              <div class="cart-img">
+                <img
+                  [src]="dataRow.image1"
+                  alt="">
+              </div>
+              <div class="cart-info">
+                <div class="cart-title">{{dataRow.name}}</div>
+                <div class="group-size-color">
+                  <div class="group-size">{{dataRow.size}}</div>
+                  <div class="group-color">{{dataRow.color}}</div>
+                </div>
+                <div class="cart-price">{{formatPrice(dataRow.price)}} VNĐ</div>
+              </div>
+              <div class="cart-quantity">
+                <div class="cart-amount">Số lượng</div>
+                <input type="number" min="1" [value]="group.get('amount')?.value" (input)="sumPrice()" formControlName="amount">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pay">
+        <div class="title-pay"></div>
+        <p class="title">Tóm tắt đơn hàng</p>
+        <div class="group-pay">
+
+            <div class="group-pay__group-pro">
+              <label class="lable" for="">Địa chỉ</label>
+              <br />
+              <select (change)="selectItem($event)" formControlName="address1">
+                <option *ngFor="let c of this.Tinh">
+                  {{ c.name }}
+                </option>
+              </select>
+              <select (change)="selectXa($event)" formControlName="address2">
+                <option *ngFor="let h of this.Huyen">
+                  {{ h.name }}
+                </option>
+              </select>
+              <select formControlName="address3">
+                <option *ngFor="let x of this.Xa">
+                  {{ x.name }}
+                </option>
+              </select>
+            </div>
+          <div>
+            <p class="address">Địa chỉ cụ thể</p>
+            <input matInput class="address-1" type="text" maxlength="255" placeholder="Địa chỉ cụ thể" formControlName="address4">
+          </div>
+          <div>
+            <p class="numberphone">Nhập số điện thoại</p>
+            <input matInput class="number-phone" type="text" maxlength="255" placeholder="Nhập số điện thoại" formControlName="phone">
+          </div>
+        </div>
+        <div class="group-synopsis">
+          <div class="group-content">
+            <div>Tóm tắt đơn hàng
+              <p>Phí vận chuyển:<span class="group-p">Miễn phí</span></p>
+              <p class="group-pp">Tổng tiền: <input class="price" [value]="formatPrice(group.get('price')?.value)"></p>
+            </div>
+          </div>
+          <div class="group-btn">
+            <button class="btn-order" (click)="addOrder()">Đặt hàng</button>
+            <button class="btn-buy" [routerLink]="['/product']">Mua thêm sản phẩm</button>
+            <p>* Chi tiêu tích lũy được ghi nhận vào tài khoản của bạn khi đơn hàng thành công. Vui lòng đăng nhập để được
+              tích lũy.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,247 @@
+.block {
+    padding: 0 1rem;
+    background-color: #f4f6fa;
+    width: 100%;
+    height: 100%;
+    &__header {
+      width: 100%;
+      margin: auto;
+    }
+    &__content{
+        width: 100%;
+        background-color: #fff;
+        padding-top: 15px;
+        .group-search {
+            display: flex;
+            margin: 12px 20px 0px 20px;
+            align-items: center;
+
+            margin-bottom: 15px;
+
+            .operator-add {
+              margin-right: 6px;
+              display: flex;
+
+              .btn-icon.mat-raised-button {
+                width: 28px;
+                height: 28px;
+                padding: 0;
+                min-width: 28px;
+                box-shadow: none !important;
+                background: #2191db;
+                width: 105px;
+                height: 32px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                letter-spacing: 0.004em;
+                margin-right: 8px;
+                mat-icon {
+                  width: 11px;
+                  height: 14px;
+                }
+              }
+              .btn-icon.mat-raised-button:hover {
+                background: #036db4;
+              }
+            }
+            .operator-title {
+              width: 237px;
+              min-width: 237px;
+              height: 27px;
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 27px;
+              letter-spacing: -0.014em;
+              color: #3d4147;
+              margin-right: 16px;
+            }
+            .group-search-btn {
+              display: flex;
+              width: 100%;
+              justify-content: flex-end;
+              min-width: 275px;
+              .search-input {
+                width: 100%;
+                max-width: 560px;
+                margin-right: 6px;
+                height: 36px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 19px;
+                letter-spacing: 0.014em;
+                color: #7b8e99;
+                position: relative;
+
+                ::ng-deep .mat-form-field {
+                  width: 100%;
+                }
+
+                ::ng-deep .mat-form-field-wrapper {
+                  margin: 0 !important;
+                }
+
+                ::ng-deep .mat-form-field-outline-end {
+                  border-width: 1px !important;
+                }
+
+                ::ng-deep .mat-form-field-outline-start {
+                  border-width: 1px !important;
+                }
+
+                ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+                  margin-top: 0;
+                  height: 36px;
+                  font-family: "Noto Sans";
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14px;
+                  padding-right: 30px;
+                }
+
+                ::ng-deep
+                  .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+                  .mat-form-field-flex:hover
+                  .mat-form-field-outline {
+                  border: 1px solid #bccaee;
+                  opacity: 1;
+
+                  .mat-form-field-outline-start,
+                  .mat-form-field-outline-gap,
+                  .mat-form-field-outline-end {
+                    border: none;
+                  }
+                }
+
+                // ::ng-deep
+                //   .mat-form-field-appearance-outline.mat-focused
+                //   .mat-form-field-outline {
+                //   color: #e0e4ef;
+                // }
+
+                ::ng-deep
+                  .mat-form-field-appearance-outline
+                  .mat-form-field-flex
+                  .mat-form-field-outline {
+                  border-radius: 2px;
+                  background: #f4f6fa;
+                  top: 0px;
+                }
+
+                ::ng-deep .mat-input-element {
+                  font-size: 14px;
+                  font-weight: 400;
+                  letter-spacing: 0.014em;
+                }
+              }
+              .clear-search {
+                position: absolute;
+                top: 10px;
+                right: 8px;
+              }
+
+              .mat-icon {
+                height: 15px;
+                width: 10px;
+                cursor: pointer;
+              }
+            }
+            .btn-search-inline {
+              z-index: 102;
+              .btn-search {
+                background: #35b6d2;
+                width: 36px;
+                height: 36px;
+                margin-right: 4px;
+
+                .icon-search {
+                  width: 14px;
+                  height: 16px;
+                  // position: relative;
+                }
+              }
+              .mat-raised-button {
+                min-width: 36px;
+                padding: none;
+                padding: 0;
+              }
+              .btn-search:hover {
+                background: #20889e;
+              }
+            }
+          }
+
+       .title{
+        display: flex;
+        height: 30px;
+        align-items: center;
+        font-weight: 900;
+        padding: 0 10px;
+        .image{
+            width: 20%;
+        }
+        .name{
+            width: 15%;
+        }
+        .content{
+            width: 15%;
+        }
+        .discount{
+            width: 20%;
+        }
+        .hinhthuc{
+            width: 20%;
+        }
+        .option{
+            width: 10%;
+            display: flex;
+            justify-content: flex-end;
+        }
+       }
+      .group-table{
+        width: 100%;
+        height: calc(100vh - 117px);
+        .group-content{
+            display: flex;
+            height: 35px;
+            align-items: center;
+            background-color: #ecf0f9;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            &:hover{
+                background-color: #bccaee;
+              }
+            .image{
+                width: 20%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                img{
+                    width: 60%;
+                    height: 60%;
+                }
+            }
+            .name{
+                width: 15%;
+            }
+            .content{
+                width: 15%;
+            }
+            .hinhthuc{
+                width: 20%;
+            }
+            .option{
+                width: 10%;
+                display: flex;
+                justify-content: flex-end;
+                mat-icon{
+                  cursor: pointer;
+                }
+            }
+            .discount{
+                width: 20%;
+            }
+           }
+      }
+    }
+}

@@ -1,0 +1,14 @@
+.block{
+    width: 100%;
+    display: flex;
+    &__navbar{
+        width: 13.75rem;
+    }
+    &__content{
+        width: 100%;
+        nz-layout{
+            background-color: transparent;
+        }
+    }
+}
+

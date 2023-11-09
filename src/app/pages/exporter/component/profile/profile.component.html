@@ -1,0 +1,120 @@
+<div class="block">
+  <div class="block__header">
+    <app-header [menuSetting]="menuSetting" [dataMenu]="dataMenu" [userName]="exporterInfo&& exporterInfo.userName"
+      [avatar]="exporterInfo && exporterInfo.avatar"></app-header>
+  </div>
+  <div class="block__content">
+    <div class="group-profile">
+      <div class="group-img">
+        <div class="img">
+          <img src="../../../../../assets/images/avartar.jpg" alt="">
+        </div>
+        <input class="input-avt" placeholder="nhập link ảnh">
+      </div>
+    </div>
+    <div class="group-content-bank">
+      <div class="group-content">
+        <div class="group-email">
+          <div class="email">
+            <span class="title">Email</span>
+          </div>
+          <input placeholder="Nhập Email">
+        </div>
+        <div class="group-name">
+          <div class="name">
+            <span class="title">Họ tên</span>
+          </div>
+          <input placeholder="Nhập Họ tên">
+        </div>
+        <div class="group-numberphone">
+          <div class="numberphone">
+            <span class="title">Số điện thoại</span>
+          </div>
+          <input placeholder="Nhập số điện thoại">
+        </div>
+      </div>
+      <div class="group-bank">
+        <span class="title-bank">Thông tin ngân hàng</span>
+        <div class="bank-information">
+          <div class="number-id">
+            <span class="">STK:</span>
+            <input type="text">
+          </div>
+          <div class="name-bank">
+            <span>Tên KH:</span>
+            <input type="text">
+          </div>
+          <div class="name-bank">
+            <span>Ngân hàng:</span>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="block__address">
+    <div class="group-address">
+      <label for="">Địa chỉ</label>
+      <br />
+      <select class="address" (change)="selectItem($event)" formControlName="address11">
+        <option *ngFor="let c of this.Tinh">
+          {{ c.name }}
+        </option>
+      </select>
+      <select class="address" (change)="selectXa($event)" formControlName="address12">
+        <option *ngFor="let h of this.Huyen">
+          {{ h.name }}
+        </option>
+      </select>
+      <select class="address" formControlName="address13">
+        <option *ngFor="let x of this.Xa">
+          {{ x.name }}
+        </option>
+      </select>
+    </div>
+    <div class="group-address-detail">
+      <div class="address-detail">
+        <span class="detail">Địa chỉ cụ thể</span>
+      </div>
+      <input placeholder="Nhập địa chỉ cụ thể ">
+    </div>
+    <div class="block__btn">
+      <button class="btn-save">Lưu</button>
+      <button class="btn-cancel">Hủy</button>
+    </div>
+
+  </div>
+  <div class="block__footer">
+    <div class="container">
+      <div class="footer-left">
+        <div class="logo">
+          <mat-icon svgIcon="icon-logo-football"></mat-icon>
+        </div>
+        <p>Cửa hàng chúng tôi chuyên cung cấp, cập nhật nhanh nhất các mẫu Quần Áo Bóng Đá, Đồ Đá Banh, Giày Đá Bóng,
+          Đồ
+          Thể Thao nổi tiếng ở trong nước và quốc tế.</p>
+      </div>
+      <div class="footer-center">
+        <div class="footer-info">THÔNG TIN
+          <span class="notes">Tin tức</span>
+          <span class="notes">Giới thiệu</span>
+          <span class="notes">Liên hệ</span>
+          <span class="notes" [routerLink]="['/tutorial']">Hướng dẫn Size</span>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-content">MINI MENU
+          <span class="notes">Áo thể thao</span>
+          <span class="notes">Quần thể thao</span>
+          <span class="notes">Phụ kiện</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">COPYRIGHT &copy; DREAMSHOPK24</div>
+  </div>
+</div>
+<router-outlet></router-outlet>

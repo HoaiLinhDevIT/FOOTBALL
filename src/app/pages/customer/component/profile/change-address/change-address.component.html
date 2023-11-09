@@ -1,0 +1,19 @@
+<div class="group-content">
+  <div class="group-content__header">
+    {{"screen.profile.title.change-address" | translate}}
+    <mat-icon class="close" (click)="onNoClick()" svgIcon="icon-close"></mat-icon>
+  </div>
+  <div class="group-content__group-input" style="margin-top: 8px">
+    <label class="login__item-label">{{"screen.profile.title.address" | translate}}</label>
+    <textarea class="text-address" maxlength="255" autocomplete="off" [(ngModel)]="address"
+      placeholder="{{'screen.profile.place-address' | translate}}" cols="10" rows="4"></textarea>
+  </div>
+  <div class="group-content__bottom">
+    <button mat-raised-button (click)="submitForm()" class="update">
+      {{"screen.profile.button.update" | translate}}
+    </button>
+    <button mat-raised-button (click)="onNoClick()" class="cancel">
+      {{"screen.profile.button.cancel" | translate}}
+    </button>
+  </div>
+</div>

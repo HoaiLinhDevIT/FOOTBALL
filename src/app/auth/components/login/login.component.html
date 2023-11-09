@@ -1,0 +1,161 @@
+<div *ngIf="!isOtpExpoxter">
+  <div #login *ngIf="verifyOTPFlg; then otpComponent; else loginComponent"></div>
+  <ng-template #otpComponent>
+    <div class="otp">
+      <form [formGroup]="OtpFormGroup" novalidate>
+        <div class="otp__top">
+          <mat-icon class="otp__top-left" svgIcon="icon-logo-football" routerLink="/"></mat-icon>
+        </div>
+        <div class="otp__title">
+          <mat-icon svgIcon="icon-chevron-left" class="otp__title-left" matSuffix (click)="backToLogin()"></mat-icon>
+          <div class="otp__title_center">{{ "screen.login.title-otp" | translate }}</div>
+          <div nzType="right" nzTheme="outline" class="otp__title-right"></div>
+        </div>
+        <div class="otp__item">
+          <div class="otp__item-description">We sent OTP to <strong class="phone-number">
+              +{{transformEntry(phoneNumber)}} </strong></div>
+          <mat-label class="otp__item-label">6-digit security code</mat-label>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Enter code here" formControlName="otpCode" autocomplete="off"
+              maxlength="6" (input)="replaceName()" (focus)="loginForm.get('otpCode')?.clearValidators()"
+              (blur)="validatorOtpCode()" matTooltip="{{
+                (OtpFormGroup.get('otpCode')?.status !== 'VALID'
+                  ? utils.getMessError(OtpFormGroup.get('otpCode')?.errors)
+                  : ''
+                ) | translate
+              }}" matTooltipClass="{{
+                OtpFormGroup.get('otpCode')?.status !== 'VALID'
+                  ? 'example-tooltip-red'
+                  : ''
+              }}" />
+            <mat-icon svgIcon="" matSuffix></mat-icon>
+          </mat-form-field>
+          <button mat-raised-button class="otp__item-submit" (click)="checkOptOauthLogin()">
+            Submit
+          </button>
+          <button mat-raised-button class="otp__item-resend-code" (click)="reSendOTP()">
+            Resend Code SMS
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <ng-template #loginComponent>
+    <div class="login">
+      <form [formGroup]="loginForm" novalidate>
+        <div class="login__top">
+          <div></div>
+          <mat-icon class="login__top-left" svgIcon="icon-logo-football" routerLink="/"></mat-icon>
+
+        </div>
+        <div class="login__title">Đăng nhập</div>
+
+        <div class="login__item">
+          <mat-label class="login__item-label">Email</mat-label>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Nhập Email" formControlName="mail" maxlength="255"
+              (focus)="loginForm.get('mail')?.clearValidators()" (blur)="validatorEMail()" autocomplete="off"
+              matTooltip="{{
+                (loginForm.get('mail')?.status !== 'VALID'
+                  ? utils.getMessError(loginForm.get('mail')?.errors)
+                  : ''
+                ) | translate
+              }}" matTooltipClass="{{
+                loginForm.get('mail')?.status !== 'VALID'
+                  ? 'example-tooltip-red'
+                  : ''
+              }}" />
+            <mat-icon svgIcon="" matSuffix></mat-icon>
+          </mat-form-field>
+          <div class="login__item-password">
+            <mat-label class="login__item-label -password">Password</mat-label>
+            <mat-form-field>
+              <input matInput placeholder="Nhập mật khẩu" formControlName="password"
+                (focus)="loginForm.get('password')?.clearValidators()" (blur)="validatorPass()"
+                [type]="showPassword ? 'text' : 'password'" autocomplete="on" matTooltip="{{
+                  (loginForm.get('password')?.status !== 'VALID'
+                    ? utils.getMessError(loginForm.get('password')?.errors)
+                    : ''
+                  ) | translate
+                }}" matTooltipClass="{{
+                  loginForm.get('password')?.status !== 'VALID'
+                    ? 'example-tooltip-red'
+                    : ''
+                }}" />
+              <mat-icon matSuffix class="icon-hidden-password" [svgIcon]="
+                  showPassword ? 'icon-hidden-password' : 'icon-show-password'
+                " (click)="togglePassWord()"></mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="login__item-under-password">
+          <mat-checkbox>
+            <div class="remember-me">
+              Nhớ mật khẩu
+            </div>
+          </mat-checkbox>
+          <div class="group-icon-question">
+            <mat-icon class="icon-question" svgIcon="icon-question"></mat-icon>
+            <div class="text-question">
+              <h4>Nhớ mật khẩu ?</h4>
+              <p>
+                Chúng tôi sẽ giúp bạn duy trì đăng nhập trong 30 ngày.<br />
+              </p>
+            </div>
+          </div>
+
+
+          <div class="login__item-fw-password">
+            <a class="forgot-pwd" routerLink="/trouble-logging">
+              <ins>Quên mật khẩu?</ins>
+            </a>
+          </div>
+        </div>
+
+        <button mat-raised-button class="login__item-btn-login" (click)="submitForm()">
+          Đăng nhập
+        </button>
+        <hr style="margin-top: 30px; margin-bottom: 30px">
+
+        <!-- <div class="login__item-hr-text">
+          <span></span>
+        </div> -->
+
+
+        <div class="login__bottom">
+          <p>Bạn chưa có tài khoản ?</p>
+          <a href="/auth/register">Đăng ký</a>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
+
+<div *ngIf="isOtpExpoxter">
+  <div class="container">
+    <div class="container__header">
+      <div></div>
+      <mat-icon class="login__top-left" svgIcon="icon-login-logo" routerLink="/"></mat-icon>
+      <button class="button-close" (click)="notOtp()">
+        <mat-icon class="login__top-right" svgIcon="icon-close"></mat-icon>
+      </button>
+    </div>
+    <div class="container__content">
+      <div class="container__content-top">
+        <mat-icon class="container__content-top-left" svgIcon="icon-left" routerLink="/"></mat-icon>
+        <mat-label class="container__content-top-label">OTP Verification</mat-label>
+        <div></div>
+      </div>
+      <div class="container__content">
+        <mat-label class="container__content-label">7-digit security code</mat-label>
+      </div>
+    </div>
+    <div class="container__item">
+      <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+    </div>
+    <div class="container__bottom">
+      <button mat-raised-button class="container__bottom-submit" (click)="otpExporter()">Submit</button>
+    </div>
+  </div>
+</div>

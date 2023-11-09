@@ -1,0 +1,110 @@
+<div class="container-navbar">
+    <div class="navbar">
+        <div class="navbar-logo">
+            <mat-icon class="navbar-logo-icon" [svgIcon]="hompageLogo" matPrefix [routerLink]="['/home']"></mat-icon>
+        </div>
+        <div class="navbar-menu">
+            <div class="header__menu">
+                <!-- <div class="header__menu__tilte">
+        Trở thành nhà cung cấp
+      </div> -->
+                <div class="header__menu--item" routerLink="auth/RegisterExporterComponent">
+                    Trở thành nhà cung cấp
+                </div>
+            </div>
+        </div>
+        <div class="navbar-buttons">
+            <div class="nav-buttons-ct">
+                <div class="buttons-login" routerLink="auth/login">
+                    <p>Đăng Nhập</p>
+                </div>
+                <div class="buttons-register" routerLink="auth/register">
+                    <p>Đăng ký</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block">
+    <div class="container">
+        <div class="title">Hướng Dẫn Chọn Size Áo Bóng Đá và Giày Đá Banh</div>
+        <div class="content">
+            <div class="group-content">
+                <div class="group-title">
+                    <p class="title-content">CHỌN SIZE ÁO BÓNG ĐÁ</p>
+                    <p class="title-content-p">Việc chọn size áo rất quan trọng, các bạn nên đọc kỹ các thông số
+                        DREAMSHOP đưa ra dưới đây trước để chọn cho mình 1 size áo bóng đá phù hợp:</p>
+                </div>
+                <div class="img-content">
+                    <img src="../../../../assets/images/size1.jpg" alt="">
+                </div>
+                <div class="notes">
+                    <h4>Lưu ý:</h4>
+                    <p>Khi chọn size áo bóng đá, các bạn có thể chọn thay đổi một chút để phù hợp với cơ thể bạn hơn, ví
+                        dụ:
+                        bạn cao 1m72 nhưng chỉ nặng 59kg, mặc size M sẽ vừa chiều ngang nhưng sẽ ngắn chiều dài, khi mặc
+                        sẽ
+                        thấy không được đẹp, vậy các bạn có thể chọn size L, rộng một chút nhưng có thể bóp lại được,
+                        còn
+                        nếu lấy M, bị ngắn là thua, không sửa được.</p>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="container-bot">
+        <div class="group-container">
+            <div class="group-size">
+                <p class="title-content">CHỌN SIZE GIÀY BÓNG ĐÁ</p>
+                <div class="img-container-bot">
+                    <img src="https://sumstore.vn/wp-content/uploads/2021/05/Chon-size-giay.jpg" alt="">
+                </div>
+            </div>
+            <div class="note">
+                <p>Mẹo lựa chọn size giày đá bóng mà không dùng thước đó là dựa vào size giày vải bata của bạn. Với kinh
+                    nghiệm tư vấn size giày nhiều năm, chúng tôi biết rằng việc lựa chọn size giày đá bóng sân cỏ nhân
+                    tạo cần chọn size lớn hơn giày vải bata, giày Thượng Đình, Thasoco…</p>
+                <p>– Trường hợp 1: Nếu bạn đi size giày bata vải, giày Thượng Đình,… vừa khít, thoải mái với size nào đó
+                    thì hãy mạnh dạn lựa chọn size giày đá bóng lớn hơn tầm 1/2, 2/3 đến 1 size (Tùy thuộc vào việc bạn
+                    muốn đi giày thoải mái hay ôm chân hết sức). Ví dụ bạn đi giày bata 41 vừa khít thì nên lựa chọn
+                    size giày đá bóng là 41 2/3 hoặc 42.</p>
+                <p>– Trường hợp 2: Bạn đi giày bata vải, giày Thượng Đình còn thừa chiều dài tầm 0,5 cm (bằng chiều rộng
+                    mũi ngón tay trỏ khi để vào trước mũi giày) thì hãy tự tin lựa chọn size giày đá bóng bằng với size
+                    giày bata vải đó.</p>
+                <p>– Trường hợp 3: Chân bạn bị mập, mu cao, rộng bè ngang chắc chắn sẽ gặp tình trạng hơi căng chân lúc
+                    mới mang giày đá bóng. Để tránh trường hợp này bạn nên lựa chọn mẫu giày đá bóng có da mềm để tránh
+                    tức chân và size giày lớn hơn so với size giày bạn nên chọn tầm nửa size.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block__footer">
+    <div class="container">
+        <div class="footer-left">
+            <div class="logo">
+                <mat-icon svgIcon="icon-logo-football"></mat-icon>
+            </div>
+            <p>Cửa hàng chúng tôi chuyên cung cấp, cập nhật nhanh nhất các mẫu Quần Áo Bóng Đá, Đồ Đá Banh, Giày Đá
+                Bóng, Đồ
+                Thể Thao nổi tiếng ở trong nước và quốc tế.</p>
+        </div>
+        <div class="footer-center">
+            <div class="footer-info">THÔNG TIN
+                <span class="notes" [routerLink]="['/news']">Tin tức</span>
+                <span class="notes">Giới thiệu</span>
+                <span class="notes">Liên hệ</span>
+                <span class="notes" [routerLink]="['/tutorial']">Hướng dẫn Size</span>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-content">MINI MENU
+                <span class="notes">Áo thể thao</span>
+                <span class="notes">Quần thể thao</span>
+                <span class="notes">Phụ kiện</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">COPYRIGHT &copy; DREAMSHOPK24</div>
+</div>

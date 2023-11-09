@@ -1,0 +1,51 @@
+<div class="block">
+    <div class="create-category">
+      <div class="create-category__logo">
+        <div class="logo-top-left">
+          <mat-icon class="icon-logo" svgIcon="icon-logo-football"> </mat-icon>
+        </div>
+        <div class="logo-top-right">
+          <mat-icon
+            class="icon-close"
+            svgIcon="icon-close"
+            (click)="afterCloseDialog()"
+          >
+          </mat-icon>
+        </div>
+      </div>
+      <div class="form-category">
+        <form [formGroup]="group">
+          <div class="group-input">
+            <label>Tên danh mục</label>
+            <mat-form-field class="group-item">
+              <input matInput formControlName="categoryName" />
+            </mat-form-field>
+          </div>
+          <div class="group-input">
+            <label>Thể loại</label>
+            <select
+              class="group-item"
+              formControlName="roleName"
+              (change)="selectItem($event)"
+            >
+              <option *ngFor="let c of this.utils.LIST_THELOAI">
+                {{ c.value }}
+              </option>
+            </select>
+          </div>
+        </form>
+        <div class="group-btn">
+          <button class="group-btn__clear" (click)="afterCloseDialog()">
+            Đóng
+          </button>
+          <button
+            class="group-btn__submit"
+            mat-raised-button
+            (click)="addCategory()"
+          >
+            Thêm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

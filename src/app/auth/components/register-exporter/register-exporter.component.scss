@@ -1,0 +1,101 @@
+@import "../../../../styles/scss/breakpoints.scss";
+@import "../../../../styles/styles-variables.scss";
+
+.block {
+  width: 392px;
+  padding: 15px 30px 15px 30px;
+  background-color: white;
+  border-radius: 8px;
+  .logo {
+    display: flex;
+    align-items: center;
+    &__icon {
+      width: 50px;
+      .icon-logo {
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+      }
+    }
+    &__title {
+      width: calc(100% - 100px);
+      display: flex;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+  .group-content {
+    width: 332px;
+    &__group-input {
+      label {
+        font-weight: 500;
+        font-size: 13px;
+      }
+      display: grid;
+      width: 100%;
+      .group-item {
+        width: 100%;
+        position: relative;
+        ::ng-deep .mat-form-field-infix {
+          height: 45px;
+          display: flex;
+          justify-content: center;
+        }
+        .icon-hidden-password {
+          width: 15px;
+          position: absolute;
+          right: 0px;
+          bottom: -5px;
+        }
+      }
+    }
+    &__group-pro {
+      label {
+        font-weight: 500;
+        font-size: 13px;
+      }
+      select {
+        width: 110px;
+      }
+    }
+    .group-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      &__signup {
+        color: #ffffff;
+        background: #2191db;
+
+        cursor: pointer;
+      }
+    }
+    .group-bottom {
+      font-size: 13px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      &__singin {
+        color: #418dc0;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      &__singin:hover {
+        color: #0099ff;
+      }
+    }
+  }
+}
+button:disabled,
+button[disabled] {
+  background: #78c9ff;
+  border-radius: 4px;
+}
+.disable {
+  pointer-events: none;
+  background: #e8eaee !important;
+}

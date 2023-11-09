@@ -1,0 +1,115 @@
+<form [formGroup]="changeEmailForm"
+      novalidate>
+  <!----------------------------------- step 1: verify email ------------------------------->
+  <div *ngIf="screen1"
+       class="change-mail">
+    <div class="group-header">
+      <div class="group-header__title">
+        {{"screen.profile.title.new-email" | translate}}
+      </div>
+      <mat-icon class="close"
+                (click)="onNoClick()"
+                svgIcon="icon-close"></mat-icon>
+    </div>
+    <div class="group-content">
+      <div class="group-content__desc">
+        <p>{{"screen.profile.desc1-new-email" | translate}}</p>
+        <p>{{"screen.profile.desc2-new-email" | translate}}</p>
+      </div>
+      <div class="group-content__group-input">
+        <label class="group-content__group-input__label">{{"screen.profile.title.new-email" | translate}}</label>
+        <mat-form-field class="code-email-input">
+          <input matInput
+                 placeholder="{{
+              'screen.profile.place-new-email' | translate
+            }}"
+                 formControlName="email"
+                 maxlength="255"
+                 (focus)="changeEmailForm.get('email')?.clearValidators()"
+                 autocomplete="off"
+                 (blur)="validatorEmail()"
+                 matTooltip="{{
+              (changeEmailForm.get('email')?.status !== 'VALID'
+                ? utils.getMessError(changeEmailForm.get('email')?.errors)
+                : ''
+              ) | translate
+            }}"
+                 matTooltipClass="{{
+              changeEmailForm.get('email')?.status !== 'VALID'
+                ? 'example-tooltip-red'
+                : ''
+            }}" />
+        </mat-form-field>
+      </div>
+      <div class="group-content__bottom two-btn">
+        <button mat-raised-button
+                class="group-content__bottom__submit"
+                (click)="stepEmail()"
+                mat-raised-button>
+          {{"screen.profile.button.submit" | translate}}
+        </button>
+        <button mat-raised-button
+                class="group-content__bottom__back"
+                (click)="onNoClick()">
+          {{"screen.profile.button.cancel" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!----------------------------------- step 2: verify otp ------------------------------->
+  <div *ngIf="screen2"
+       class="change-mail">
+    <div class="group-header">
+      <div class="group-header__title">
+        {{"screen.profile.title.verify-otp" | translate}}
+      </div>
+      <mat-icon class="close"
+                (click)="onNoClick()"
+                svgIcon="icon-close"></mat-icon>
+    </div>
+    <div class="group-content">
+      <div class="group-content__desc">
+        <p> {{"screen.profile.title.desc-verify-otp" | translate}} {{maskmail}}</p>
+      </div>
+      <div class="group-content__group-input">
+        <label class="group-content__group-input__label">{{"screen.profile.lbl-verify-otp" | translate}}</label>
+        <mat-form-field>
+          <input matInput
+                 placeholder="{{
+              'screen.profile.place-otp' | translate
+            }}"
+                 formControlName="otp"
+                 (focus)="changeEmailForm.get('otp')?.clearValidators()"
+                 autocomplete="off"
+                 maxlength="6"
+                 (blur)="validatorOtp()"
+                 matTooltip="{{
+              (changeEmailForm.get('otp')?.status !== 'VALID'
+                ? utils.getMessError(changeEmailForm.get('otp')?.errors)
+                : ''
+              ) | translate
+            }}"
+                 matTooltipClass="{{
+              changeEmailForm.get('otp')?.status !== 'VALID'
+                ? 'example-tooltip-red'
+                : ''
+            }}" />
+        </mat-form-field>
+      </div>
+      <div class="group-content__bottom two-btn">
+        <button mat-raised-button
+                class="group-content__bottom__submit"
+                (click)="stepOtp()"
+                mat-raised-button>
+          {{"screen.profile.button.save" | translate}}
+        </button>
+        <button mat-raised-button
+                class="group-content__bottom__back"
+                (click)="previousStep(1)">
+          {{"screen.profile.button.back" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

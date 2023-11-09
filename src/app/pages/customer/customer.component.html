@@ -1,0 +1,10 @@
+<div class="block">
+  <div class="block__content" *ngIf="loginService.isLoginAsync$.getValue()">
+    <nz-layout>
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+      </nz-layout>
+  </div>
+  
+</div>

@@ -1,0 +1,406 @@
+<div>
+  <form [formGroup]="registerOrderForm" novalidate autocomplete="off">
+    <div class="block">
+
+      <div class="block__content content" *ngIf="isSend">
+        <div class="block__order-title">
+
+          <span class="order-title">支払い契約</span>
+          <span class="deal-id">オペレーター:{{userId}} - {{userName}}</span>
+        </div>
+        <div class="block__email">
+          <div class="block__card-title">
+            <span>バイヤー</span>
+          </div>
+          <div class="ds-flex">
+            <div class="group-content__group-input register__item email-customer">
+              <label>メールアドレス</label>
+              <mat-form-field>
+                <input matInput (blur)="blurEmail()" formControlName="emailCustomer"
+                  (focus)="registerOrderForm.get('emailCustomer')?.clearValidators()" maxlength="255" matTooltip="{{
+                                            (registerOrderForm.get('emailCustomer')?.status !== 'VALID'
+                                              ? utils.getMessError(registerOrderForm.get('emailCustomer')?.errors)
+                                              : ''
+                                            ) | translate
+                                          }}" matTooltipClass="{{
+                                            registerOrderForm.get('emailCustomer')?.status !== 'VALID'
+                                              ? 'example-tooltip-red'
+                                              : ''
+                                          }}" />
+              </mat-form-field>
+            </div>
+            <div class="group-content__group-input register__item name">
+              <label>名前</label>
+              <div class="disable">
+                {{nameCustomer}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="block__detail">
+          <div class="block__detail-left">
+            <div class="group-content__group-input register__item marker">
+              <label>メーカー</label>
+              <div class="example-form">
+                <input mat-input type="text" formControlName="maker" maxlength="25" [matAutocomplete]="auto"
+                  (blur)="blurMaker()" matTooltip="{{
+                                        (registerOrderForm.get('maker')?.status !== 'VALID'
+                                          ? utils.getMessError(registerOrderForm.get('maker')?.errors)
+                                          : ''
+                                        ) | translate
+                                      }}" matTooltipClass="{{
+                                        registerOrderForm.get('maker')?.status !== 'VALID'
+                                          ? 'example-tooltip-red'
+                                          : ''
+                                      }}">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let street of filteredOptions | async" [value]="street">
+                    {{street}}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+            </div>
+            <div class="group-content__group-input register__item model">
+              <label>モデル</label>
+              <mat-form-field>
+                <input matInput formControlName="model" maxlength="255"
+                  (focus)="registerOrderForm.get('model')?.clearValidators()" (blur)="blurModel()" matTooltip="{{
+                                        (registerOrderForm.get('model')?.status !== 'VALID'
+                                          ? utils.getMessError(registerOrderForm.get('model')?.errors)
+                                          : ''
+                                        ) | translate
+                                      }}" matTooltipClass="{{
+                                        registerOrderForm.get('model')?.status !== 'VALID'
+                                          ? 'example-tooltip-red'
+                                          : ''
+                                      }}" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="block__detail-right">
+            <div class="group-content__group-input register__item mfg">
+              <label>製造日付</label>
+              <mat-form-field class="group-item year">
+                <mat-select formControlName="year" placeholder="年" matTooltip="{{
+                                    (registerOrderForm.get('year')?.status !== 'VALID'
+                                      ? utils.getMessError(registerOrderForm.get('year')?.errors)
+                                      : ''
+                                    ) | translate
+                                  }}" matTooltipClass="{{
+                                    registerOrderForm.get('year')?.status !== 'VALID'
+                                      ? 'example-tooltip-red'
+                                      : ''
+                                  }}">
+                  <mat-option *ngFor="let c of utils.LIST_YEAR" [value]="c">{{ c }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="group-item month">
+                <mat-select formControlName="month" placeholder="月" matTooltip="{{
+                                    (registerOrderForm.get('month')?.status !== 'VALID'
+                                      ? utils.getMessError(registerOrderForm.get('month')?.errors)
+                                      : ''
+                                    ) | translate
+                                  }}" matTooltipClass="{{
+                                    registerOrderForm.get('month')?.status !== 'VALID'
+                                      ? 'example-tooltip-red'
+                                      : ''
+                                  }}">
+                  <mat-option *ngFor="let c of utils.LIST_MONTH" [value]="c">{{ c }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="group-content__group-input register__item chassis">
+              <label>車体番号</label>
+              <mat-form-field>
+                <input matInput formControlName="chassiNumber" maxlength="20"
+                  (focus)="registerOrderForm.get('chassiNumber')?.clearValidators()" (blur)="blurChassiNumber()"
+                  matTooltip="{{
+                                    (registerOrderForm.get('chassiNumber')?.status !== 'VALID'
+                                      ? utils.getMessError(registerOrderForm.get('chassiNumber')?.errors)
+                                      : ''
+                                    ) | translate
+                                  }}" matTooltipClass="{{
+                                    registerOrderForm.get('chassiNumber')?.status !== 'VALID'
+                                      ? 'example-tooltip-red'
+                                      : ''
+                                  }}" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="block__order">
+          <div class="block__order-left">
+            <div class="block__card">
+              <div class="block__card-title">
+                <span>合計</span>
+              </div>
+              <div class="block__card-content  ">
+                <div class="total-price">
+                  <div class="total">
+                    {{totalPrice}}
+                  </div>
+                  <div class="money money-input-group">
+                    <div class="input-group-right" (click)="openDialogInput()">
+                      <button mat-button>
+                        <img [src]="inputIcon" alt="" class="input-group-icon" />
+                        <span>{{ inputName }}</span>
+                        <mat-icon class="input-group-icon-dropdown" svgIcon="icon-down-gray" matPrefix></mat-icon>
+                      </button>
+                    </div>
+                    <div class="dropdown-dialog" #dialogInput *ngIf="isShowDialogInput">
+                      <ul nz-menu class="group-item-menu">
+                        <ng-container *ngFor="let item of groupCountry">
+                          <li class="item-menu" (click)="onClickMenuInput(item)">
+                            <span class="item">
+                              <img [src]="item.iconUrl" alt="" class="icon-svg" />
+                              <span class="item-id-country">{{
+                                item.money | translate
+                                }}</span>
+
+                            </span>
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="description" formArrayName="payment">
+                  <div class="descripton-box" *ngFor="let item of payments.controls;let i = index" [formGroupName]="i">
+                    <div class="descripton-title">
+                      支払い{{i+1}}
+                    </div>
+                    <!-- <div class="descripton-price">
+                                            <input type="text" formControlName="priceItem"
+                                            (blur)="formatCurrency(this.payments.at(i).get('priceItem')?.value,i)"/>
+                                        </div> -->
+                    <!-- <div class="descripton-price">
+                                            <input type="number" maxlength="10" formControlName="priceItem"
+                                            (input)="replaceInputNumber(i)"
+                                            (blur)="formatCurrency(this.payments.at(i).get('priceItem')?.value,i)" />
+                                        </div> -->
+                    <div class="descripton-price">
+                      <input type="text" maxlength="10" formControlName="priceItem"
+                        (blur)="formatCurrency(this.payments.at(i).get('priceItem')?.value,i)"
+                        (input)="replaceInputNumber(i)" />
+                    </div>
+                    <div class="descripton-currency">
+                      {{ inputName }}
+                    </div>
+                  </div>
+                  <div class="add-item" (click)="addPayment()" [ngClass]="!isDisableAddItem ? 'none' : ''">+ 追加</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="block__order-right ">
+            <div class="block__card">
+              <div class="block__card-title">
+                <span>セラー</span>
+              </div>
+              <div class="block__card-content input-email-exporter">
+                <label>メールアドレス</label>
+                <mat-form-field>
+                  <input matInput formControlName="emailExporter" maxlength="255"
+                    (focus)="registerOrderForm.get('emailExporter')?.clearValidators()" (blur)="blurEmailExporter()"
+                    matTooltip="{{
+                                        (registerOrderForm.get('emailExporter')?.status !== 'VALID'
+                                          ? utils.getMessError(registerOrderForm.get('emailExporter')?.errors)
+                                          : ''
+                                        ) | translate
+                                      }}" matTooltipClass="{{
+                                        registerOrderForm.get('emailExporter')?.status !== 'VALID'
+                                          ? 'example-tooltip-red'
+                                          : ''
+                                      }}" />
+                </mat-form-field>
+
+              </div>
+              <div class="block__card-content input-name-exporter">
+                <label>会社名</label>
+                <div class="disable">
+                  {{nameExporter}}
+                </div>
+
+              </div>
+              <div class="block__card-content upload-exporter">
+                <label>インボイスアップロード</label>
+                <div class="register_upload-file" [ngClass]="validateFile ? 'my_class1' : 'my_class2'">
+                  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                      <p class="ant-upload-drag-icon">
+                        <mat-icon svgIcon="icon-camera"></mat-icon>
+                      </p>
+                      <p class="ant-upload-text">ここに画像をドロップしてください。</p>
+                      <p class="ant-upload-hint">
+                        画像をアップロードする。
+                      </p>
+                      <input type="file" #inputBusinessLicense class="input" name="Browse files" accept="image/*"
+                        (change)="validateFileType($event)" formControlName="invoiceImage" value="dsadsa"
+                        title="select file" />
+                    </ng-template>
+                  </ngx-file-drop>
+                </div>
+                <div class="register_name-file-upload" *ngFor="let item of listFileUpload;let i = index">
+                  <div class="name-file">
+                    {{item.name}}
+                  </div>
+                  <div class="delete-file">
+                    <mat-icon class="icon-delete-file" svgIcon="icon-close" matPrefix (click)="deleteFileBL(i)">
+                    </mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="block__button">
+          <button class="back" [routerLink]="['/admin/order']">戻る</button>
+          <button class="save" (click)="submit()">保存</button>
+        </div>
+      </div>
+      <div class="block__content content" *ngIf="!isSend">
+        <div class="block__order-title">
+          支払い契約 <span class="deal-id">オペレーター:{{userId}} - {{userName}}</span>
+        </div>
+
+        <div class="block__email">
+          <div class="block__card-title">
+            <span>Buyer</span>
+          </div>
+          <div class="ds-flex">
+            <div class="group-content__group-input register__item email-customer">
+              <label>メールアドレス</label>
+              <div class="disable">
+                {{this.registerOrderForm.controls['emailCustomer'].value}}
+              </div>
+            </div>
+            <div class="group-content__group-input register__item name">
+              <label>名前</label>
+              <div class="disable">
+                {{nameCustomer}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="block__detail">
+          <div class="block__detail-left">
+            <div class="group-content__group-input register__item marker">
+              <label>Maker</label>
+              <div class="disable">
+                {{this.registerOrderForm.get('maker')?.value}}
+              </div>
+            </div>
+            <div class="group-content__group-input register__item model">
+              <label>Model</label>
+              <div class="disable">
+                {{this.registerOrderForm.get('model')?.value}}
+              </div>
+            </div>
+          </div>
+          <div class="block__detail-right">
+
+            <div class="group-content__group-input register__item mfg ">
+              <label>Mfg.year/month</label>
+              <div class="disable-mfg">
+                <div class="disable">
+                  {{this.registerOrderForm.get('year')?.value}}
+                </div>
+                <div class="disable">
+                  {{this.registerOrderForm.get('month')?.value}}
+                </div>
+              </div>
+
+            </div>
+            <div class="group-content__group-input register__item chassis">
+              <label>CHASSIS NO.</label>
+              <div class="disable">
+                {{this.registerOrderForm.get('chassiNumber')?.value}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block__order">
+          <div class="block__order-left">
+            <div class="block__card">
+              <div class="block__card-title">
+                <span>合計</span>
+              </div>
+              <div class="block__card-content">
+                <div class="total-price">
+                  <div class="total">
+                    {{totalPrice}}
+                  </div>
+                  <div class="money">
+
+                  </div>
+                </div>
+                <div class="description">
+                  <div class="descripton-box"
+                    *ngFor="let item of this.registerOrderForm.controls['payment'].value;let i = index">
+                    <div class="descripton-title">
+                      支払い{{i}}
+                    </div>
+                    <!-- <div class="descripton-price">
+                                            <input type="text" formControlName="priceItem"
+                                            (blur)="formatCurrency(this.payments.at(i).get('priceItem')?.value,i)"/>
+                                        </div> -->
+                    <div class="descripton-price disable-price">
+                      {{item.priceItem}}
+                    </div>
+                    <div class="descripton-currency">
+                      {{inputName}}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="block__order-right ">
+            <div class="block__card">
+              <div class="block__card-title">
+                <span>Total price</span>
+              </div>
+              <div class="block__card-content input-email-exporter">
+                <label>Exporter</label>
+                <div class="disable">
+                  {{this.registerOrderForm.get('emailExporter')?.value}}
+                </div>
+
+              </div>
+              <div class="block__card-content input-name-exporter">
+                <label>会社名</label>
+                <div class="disable">
+                  {{nameExporter}}
+                </div>
+
+              </div>
+              <div class="block__card-content upload-exporter">
+                <label>Item INVOICE upload</label>
+
+                <div class="register_name-file-upload" *ngFor="let item of listFileUpload;let i = index"
+                  [ngClass]="item.name===''?'dp-n':''">
+                  <div class="name-file">
+                    {{item.name}}
+                  </div>
+                  <div class="delete-file" *ngIf="isSend">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block__button">
+          <button class="back" (click)="back()">Back</button>
+          <button class="save" (click)="send()">Save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

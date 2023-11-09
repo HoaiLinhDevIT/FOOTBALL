@@ -1,0 +1,410 @@
+<div class="container">
+  <div class="tbl-header"></div>
+  <div
+    *ngIf="displayColumns.length > 0 && dataSource"
+    #container
+    class="table-container"
+    [ngClass]="{ hiddenScrollBar: dataSource.results.length < 1 }"
+  >
+    <table
+      mat-table
+      *ngIf="dataSource.results.length > 0"
+      matSort
+      #matTable
+      [dataSource]="data"
+      (matSortChange)="handleSort.emit($event)"
+    >
+      <ng-container
+        *ngFor="let column of columnDefinition"
+        [matColumnDef]="column.id"
+        [sticky]="column.sticky ? true : false"
+        [stickyEnd]="column.stickyEnd ? true : false"
+      >
+        <ng-container [ngSwitch]="column.type">
+          <!-- ::::::::::::::::::::::::::::::::::SELECT CHECKBOX:::::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'selection'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <mat-checkbox
+                *ngIf="column.showSelectAll"
+                class="checkbox"
+                color="primary"
+                (change)="$event ? toggleAllRows() : null"
+                [checked]="selectionModel.hasValue() && isAllSelected()"
+                [indeterminate]="selectionModel.hasValue() && !isAllSelected()"
+              >
+              </mat-checkbox>
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let row"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <mat-checkbox
+                class="checkbox"
+                color="primary"
+                (click)="$event.stopPropagation()"
+                (change)="$event ? selectionModel.toggle(row) : null"
+                [checked]="isSelectedItem(row)"
+              >
+              </mat-checkbox>
+            </td>
+          </div>
+          <!-- ::::::::::::::::::::::::::::::::::TEXT:::::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'text'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [class.cell-align-center]="column.alignCenter"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+            >
+              {{ column.name | translate }}
+            </th>
+            <td
+              *matCellDef="let element"
+              mat-cell
+              class="overflow"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [matTooltip]="
+                utils.getValueByKey(element, column.id) && column.showTooltip
+                  ? utils.getValueByKey(element, column.id)
+                  : ''
+              "
+              matTooltipClass="example-tooltip-info"
+              [class.cell-align-right]="column.alignRight"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <span
+                *ngIf="!column.format"
+                [ngStyle]="{
+                  width: (column.weight || 0) + 'px',
+                  'min-width': (column.weight || 0) + 'px'
+                }"
+              >
+                {{
+                  !utils.getValueByKey(element, column.id)
+                    ? "-"
+                    : utils.getValueByKey(element, column.id)
+                }}
+              </span>
+              <span
+                *ngIf="column && column.format && isNumber(column.format)"
+                [ngStyle]="{
+                  width: (column.weight || 0) + 'px',
+                  'min-width': (column.weight || 0) + 'px'
+                }"
+              >
+                {{
+                  utils.getValueByKey(element, column.id)
+                    | currencyFormatPipe: pipeNumber(column.format)
+                }}1
+              </span>
+              <span
+                *ngIf="column && column.format && isDateTime(column.format)"
+                [ngStyle]="{
+                  width: (column.weight || 0) + 'px',
+                  'min-width': (column.weight || 0) + 'px'
+                }"
+              >
+                {{
+                  utils.getValueByKey(element, column.id)
+                    | datetimeformat2: pipeDateTime(column.format)
+                }}
+              </span>
+            </td>
+          </div>
+          <!-- ::::::::::::::::::::::::::::::::::Group Text:::::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'groupText'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [class.cell-align-center]="column.alignCenter"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+            >
+              {{ column.name | translate }}
+            </th>
+            <td
+              *matCellDef="let element"
+              mat-cell
+              class="overflow"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [matTooltip]="
+                utils.getValueByKey(element, column.id) && column.showTooltip
+                  ? utils.getValueByKey(element, column.id)
+                  : ''
+              "
+              matTooltipClass="example-tooltip-info"
+              [class.cell-align-right]="column.alignRight"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <div class="group-item-operator">
+                <mat-icon
+                  class="icon-anonymous"
+                  svgIcon="anonymous-logo"
+                ></mat-icon>
+                <div class="group-item-name">
+                  <span>{{ utils.getValueByKey(element, "userName") }}</span>
+                  <span>{{ utils.getValueByKey(element, "companyName") }}</span>
+                  <p>{{ utils.getValueByKey(element, "email") }}</p>
+                </div>
+              </div>
+            </td>
+          </div>
+
+          <!-- ============================group address================================= -->
+          <div *ngSwitchCase="'groupAdd'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [class.cell-align-center]="column.alignCenter"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+            >
+              {{ column.name | translate }}
+            </th>
+            <td
+              *matCellDef="let element"
+              mat-cell
+              class="overflow"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [matTooltip]="
+                utils.getValueByKey(element, column.id) && column.showTooltip
+                  ? utils.getValueByKey(element, column.id)
+                  : ''
+              "
+              matTooltipClass="example-tooltip-info"
+              [class.cell-align-right]="column.alignRight"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <div class="group-item-operator">
+                <div class="group-item-address">
+                  <span>
+                    {{ utils.getValueByKey(element, "address13") }},
+                    {{ utils.getValueByKey(element, "address12") }},
+                    {{ utils.getValueByKey(element, "address11") }}
+                  </span>
+                </div>
+              </div>
+            </td>
+          </div>
+          <!-- ::::::::::::::::::::::::::::::::::TEXT-ZERO-FILL:::::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'text-zero-fill'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [class.cell-align-center]="column.alignCenter"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+            >
+              {{ column.name | translate }}
+            </th>
+            <td
+              *matCellDef="let element"
+              mat-cell
+              class="overflow"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [class.cell-align-right]="column.alignRight"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <span *ngIf="!column.format">
+                {{
+                  !utils.getValueByKey(element, column.id)
+                    ? "-"
+                    : dataZeroFill(
+                        utils.getValueByKey(element, column.id),
+                        column.zeroFill ? column.zeroFill : 6
+                      )
+                }}
+              </span>
+            </td>
+          </div>
+          <!-- ::::::::::::::::::::::::::::::::::TEXT-VALUE-RADIO:::::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'text-value-radio'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [class.cell-align-center]="column.alignCenter"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+            >
+              {{ column.name | translate }}
+            </th>
+            <td
+              *matCellDef="let element"
+              mat-cell
+              class="overflow"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [class.cell-align-right]="column.alignRight"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <span *ngIf="!column.format">
+                {{
+                  !utils.getValueByKey(element, column.id)
+                    ? "-"
+                    : dataRadioColum(
+                        column.arrayTextValueRadio
+                          ? column.arrayTextValueRadio
+                          : [],
+                        utils.getValueByKey(element, column.id)
+                      )
+                }}
+              </span>
+            </td>
+          </div>
+          <!-- ::::::::::::::::::::::::::::::::::SELECT CHECKBOX:::::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'selection'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <mat-checkbox
+                *ngIf="column.showSelectAll"
+                class="checkbox"
+                color="primary"
+                (change)="$event ? toggleAllRows() : null"
+                [checked]="selectionModel.hasValue() && isAllSelected()"
+                [indeterminate]="selectionModel.hasValue() && !isAllSelected()"
+              >
+              </mat-checkbox>
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let row"
+              [ngStyle]="{
+                width: (column.weight || 0) + 'px',
+                'min-width': (column.weight || 0) + 'px'
+              }"
+              [class.cell-align-center]="column.alignCenter"
+            >
+              <mat-checkbox
+                class="checkbox"
+                color="primary"
+                (click)="$event.stopPropagation()"
+                (change)="$event ? selectionModel.toggle(row) : null"
+                [checked]="isSelectedItem(row)"
+              >
+              </mat-checkbox>
+            </td>
+          </div>
+          <!-- :::::::::::::::::::::::::::::::::::::OPTIONS::::::::::::::::::::::::::::::::::::: -->
+          <div *ngSwitchCase="'button'">
+            <th
+              *matHeaderCellDef
+              mat-header-cell
+              class="cell-align-center"
+              [ngStyle]="{
+                width: (!isShowOption ? column.weight || 0 : 0) + 'px',
+                'min-width': (!isShowOption ? column.weight || 0 : 0) + 'px',
+                borderLeft: isShowOption ? 'unset' : ''
+              }"
+            >
+              <div class="cell-overflow" *ngIf="!isShowOption">Tuỳ chọn</div>
+            </th>
+            <td
+              *matCellDef="let element"
+              mat-cell
+              class="cell-align-center btn-action"
+              [ngStyle]="{
+                borderLeft: isShowOption ? 'unset' : ''
+              }"
+            >
+              <ng-container *ngFor="let option of column.options">
+                <mat-icon
+                  [svgIcon]="option.icon || ''"
+                  matTooltip="{{ option.name | translate }}"
+                  matTooltipPosition="below"
+                  matTooltipClass="custom-tooltip"
+                  (click)="onBtnClick(option.id || 'string', element)"
+                  *ngIf="!isShowOption"
+                ></mat-icon>
+              </ng-container>
+            </td>
+          </div>
+        </ng-container>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+      <tr
+        mat-row
+        [class.highlight]="checkFocus(row)"
+        *matRowDef="let row; columns: displayColumns"
+      ></tr>
+    </table>
+
+    <ng-container *ngIf="dataSource.results.length === 0">
+      <div class="no-data-row">
+        <span>Không có dữ liệu</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="btn-page" *ngIf="dataSource.totalPage > 1">
+    <div class="btn-page-previous">
+      <button
+        mat-stroked-button
+        *ngIf="dataSource.currentPage > 1"
+        color="default"
+        id="previous"
+      >
+        Lui
+      </button>
+    </div>
+
+    <div class="page-title">
+      Trang {{ dataSource.currentPage }} / {{ dataSource.totalPage }}
+    </div>
+
+    <div class="btn-page-next">
+      <button
+        mat-stroked-button
+        *ngIf="dataSource.currentPage < dataSource.totalPage"
+        color="default"
+        id="next"
+      >
+        Tới
+      </button>
+    </div>
+  </div>
+</div>

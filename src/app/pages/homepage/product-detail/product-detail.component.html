@@ -1,0 +1,133 @@
+<form [formGroup]="group">
+
+<div class="product">
+  <div class="product__img">
+      <img [src]="dataRow.image1" alt="" formControlName="image1" />
+      <div class="detail-product">
+          <div class="title">Chi tiết sản phẩm</div>
+          <div class="group-detail-product">
+              <div class="detail-name">
+                  <div>Danh mục</div>
+                  <div>Xuất xứ</div>
+                  <div>Chất liệu</div>
+                  <div>Kho hàng</div>
+              </div>
+              <div class="detail-note">
+                <input class="data" formControlName="category">
+                <input class="data" formControlName="origin">
+                <input class="data" formControlName="substance">
+                <input class="data" formControlName="amount">
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="product__mini">
+      <div class="img">
+          <img [src]="dataRow.image2" alt="" />
+      </div>
+      <div class="img">
+          <img [src]="dataRow.image3" alt="" />
+      </div>
+      <div class="img">
+          <img [src]="dataRow.image4" alt="" />
+      </div>
+  </div>
+
+  <mat-tab-group>
+      <mat-tab label="Sản phẩm">
+          <div class="product__content">
+              <div class="title">
+                  <span>{{dataRow.productName}}</span>
+              </div>
+              <div class="price">
+                <span>Gía:</span>
+                  <input (input)="sumPrice()" class="data" formControlName="sumanyPrice" [value]="formatPrice(group.get('sumanyPrice')?.value)">
+          <sup>đ</sup>
+              </div>
+
+              
+
+              <!-- <div class="color">
+                  <div class="content">
+                      <span>Màu sắc :</span>
+                  </div>
+                  <select class="group-color" formControlName="color">
+                      <option class="btn-color">Màu đen</option>
+                      <option class="btn-color">Màu trắng</option>
+                      <option class="btn-color">Màu vàng</option>
+                  </select>
+              </div> -->
+
+              <!-- <div class="size">
+                  <div class="content">
+                      <span>Size</span>
+                  </div>
+                  <select class="group-size" formControlName="size">
+                      <option class="size-1">S</option>
+                      <option class="size-1">M</option>
+                      <option class="size-1">L</option>
+                      <option class="size-1">XL</option>
+                  </select>
+              </div> -->
+
+              <div class="amount">Số lượng
+                  <input class="count" type="number"
+                   min="1" formControlName="amount2"
+                   [value]="group.get('amount2')?.value"
+                   (input)="sumPrice()"
+                   max="{{dataRow.amount}}"
+                   >
+                  <span class="warehouse">{{dataRow.amount}} sản phẩm có sẵn</span>
+              </div>
+              <div class="group-button">
+                  <button class="btn-add" (click)="addCart()">
+          <mat-icon svgIcon="icon-cart" ></mat-icon> Thêm vào giỏ
+        </button>
+                  <button class="btn-buy" (click)="openDialog()">Mua hàng</button>
+                  <button class="btn-more" (click)="closeDialog()">Xem thêm</button>
+              </div>
+              <div class="group-describe">
+                  <div class="describe-product">Mô tả sản phẩm</div>
+                  <span>{{dataRow.description}}</span>
+              </div>
+          </div>
+      </mat-tab>
+      <mat-tab label="Bình luận">
+        <form [formGroup]="groupCm">
+          <div class="group-cmt">
+
+              <div class="table-cmt">
+                  <div class="group-content-cmt" *ngFor="let c of comment">
+                      <div class="group-user">
+                          <div class="avt-cmt">
+                              <img [src]="c.avatar" alt="">
+                          </div>
+                        <div class="time-mail">
+                          <div class="daytime-cmt">
+                            <!-- 12/03/2022 15:07 -->
+                        </div>
+                          <div class="name-cmt">
+                              <span>{{c.mail}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="comment-cmt">
+
+                          <div class="content-cmt">
+                              {{c.content}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="group-page">
+                  <input matInput formControlName="content">
+                  <mat-icon svgIcon="icon-send" (click)="addComent()"></mat-icon>
+
+              </div>
+          </div>
+        </form>
+      </mat-tab>
+  </mat-tab-group>
+
+</div>
+</form>

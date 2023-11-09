@@ -1,0 +1,74 @@
+<div class="group-content"
+     [formGroup]="exporterForm">
+  <div class="group-content__header">
+    <div class="title">{{"screen.profile.title.change-address2" | translate}}</div>
+    <mat-icon class="close"
+              (click)="onNoClick()"
+              svgIcon="icon-close"></mat-icon>
+  </div>
+  <div class="group-content__group-input">
+    <label class="mr-4">Postal Code</label>
+    <div class="group-content__group-input__post-code">
+      <mat-form-field>
+        <input matInput
+               formControlName="postCode2"
+               maxlength="8"
+               (focus)="exporterForm.get('postCode2')?.clearValidators()"
+               (input)="replaceCode('postCode2')"
+               (blur)="postCode2($event)"
+               autocomplete="off"
+               matTooltip="{{
+                    (exporterForm.get('postCode2')?.status !== 'VALID'
+                      ? utils.getMessError(exporterForm.get('postCode2')?.errors)
+                      : ''
+                    ) | translate
+                  }}"
+               matTooltipClass="{{
+                    exporterForm.get('postCode2')?.status !== 'VALID'
+                      ? 'example-tooltip-red'
+                      : ''
+                  }}"
+               required="false" />
+      </mat-form-field>
+      <div> </div>
+      <div> </div>
+    </div>
+    <div class="group-content__group-input__code-address">
+      <label class="mr-4">Company Address1</label>
+      <div class="group-content__group-input__code-address-display">
+        <mat-form-field class="disable postalCode2Adress1">
+          <input matInput
+                 formControlName="postalCode2Adress1" />
+        </mat-form-field>
+        <mat-form-field class="disable postalCode2Adress2">
+          <input matInput
+                 formControlName="postalCode2Adress2" />
+        </mat-form-field>
+      </div>
+      <div class="postalCode2Adress3">
+        <mat-form-field class="disable">
+          <input matInput
+                 formControlName="postalCode2Adress3" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <input matInput
+               formControlName="postalCode2Adress4"
+               maxlength="255" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="group-content__bottom">
+    <button mat-raised-button
+            (click)="cancel()"
+            class="cancel">
+      {{"screen.profile.button.cancel" | translate}}
+    </button>
+    <button mat-raised-button
+            (click)="submitForm()"
+            class="update">
+      {{"screen.profile.button.update" | translate}}
+    </button>
+  </div>
+</div>

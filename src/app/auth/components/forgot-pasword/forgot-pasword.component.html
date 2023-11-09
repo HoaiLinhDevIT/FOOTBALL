@@ -1,0 +1,60 @@
+<div class="forgot-pwd" *ngIf="isForgot">
+  <form [formGroup]="forgotPasswordForm">
+
+    <div class="forgot-pwd__top">
+      <div class="forgot-pwd__top-title-description">{{'screen.trouble-loggin.dialog-forgot.title' | translate}}</div>
+      <mat-icon class="forgot-pwd__top-logo" svgIcon="icon-close" mat-dialog-close></mat-icon>
+    </div>
+
+    <p>{{'screen.trouble-loggin.dialog-forgot.content2'| translate}}</p>
+
+    <div class="forgot-pwd__item">
+      <mat-label class="forgot-pwd__item-label">{{'screen.trouble-loggin.dialog-email-us.Email-label' | translate}}</mat-label>
+      <mat-form-field>
+        <input matInput
+                placeholder="{{'screen.trouble-loggin.dialog-email-us.Email-placeholder' | translate}}"
+                class="ip-email"
+                formControlName="email"
+                autocomplete="off"
+                maxlength="255"
+                (focus)="forgotPasswordForm.get('email')?.clearValidators()"
+                (blur)="validatorEMail()"
+                matTooltip="{{
+                (forgotPasswordForm.get('email')?.status !== 'VALID' &&
+                forgotPasswordForm.get('email')?.touched
+                  ? utils.getMessError(forgotPasswordForm.get('email')?.errors)
+                  : '') | translate
+              }}"
+                matTooltipClass="{{
+                forgotPasswordForm.get('email')?.status !== 'VALID' &&
+                forgotPasswordForm.get('email')?.touched
+                  ? 'example-tooltip-red'
+                  : ''
+              }}" >
+      </mat-form-field>
+    </div>
+
+    <div class="forgot-pwd__button">
+      <button mat-dialog-close class="button-close">{{"common.button.cancel" | translate}}</button>
+      <button mat-raised-button class="button-send-mail" (click)="submitForm()">{{ 'common.button.Submit' | translate }}</button>  
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!isForgot">
+  <div class="block">
+    <div class="block__top">
+      <div class="top-icon-left"><mat-icon svgIcon="icon-close" class="icon-close" mat-dialog-close></mat-icon></div>
+      <div class="top-icon-center"><mat-icon svgIcon="icon-alert-success" class="icon-alert"></mat-icon> </div>
+      <div class="top-type">{{ 'screen.trouble-loggin.dialog-forgot.success' | translate}}</div>
+    </div>
+  
+    <div class="block__content">
+      <p class="content-message" innerHtml="{{ 'screen.trouble-loggin.dialog-forgot.content3' | translate }}" ></p>
+    </div>
+
+    <div class="block__bottom">
+      <button mat-raised-button class="btn-ok" routerLink="/auth/login" mat-dialog-close>{{'screen.trouble-loggin.dialog-forgot.button-tologin'| translate}}</button>
+    </div> 
+  </div>
+</div> 

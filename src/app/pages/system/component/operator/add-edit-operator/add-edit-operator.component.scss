@@ -1,0 +1,283 @@
+@import "../../../../../../styles/scss/breakpoints.scss";
+@import "../../../../../../styles/styles-variables.scss";
+
+::ng-deep .mat-dialog-container {
+  border-radius: 12px;
+  padding: 0 !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fafafc inset !important;
+}
+
+::ng-deep .mat-raised-button {
+  font-family: "Noto Sans" !important;
+  font-style: normal !important;
+}
+
+::ng-deep .example-tooltip-red {
+  background: #ffff;
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 3px !important;
+  font-size: 10px !important;
+  color: #eb5757 !important;
+}
+::ng-deep
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled).mat-form-field-invalid
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 1px solid red !important;
+  opacity: 1;
+  .mat-form-field-outline-start,
+  .mat-form-field-outline-gap,
+  .mat-form-field-outline-end {
+    border: none;
+  }
+}
+.operato-block {
+  width: 100%;
+  height: 100%;
+  .operator-signup {
+    width: 100%;
+    height: 100%;
+    background: white;
+    // padding: 31px 60px 32px 60px;
+    border-radius: 8px;
+    min-width: 332px;
+    margin: 0px;
+    padding: 24px !important;
+
+    align-items: center;
+    font-family: "Noto Sans";
+
+    &__logo {
+      width: 332px;
+      height: 27px;
+      margin-left: 16px;
+      display: flex;
+      align-items: center;
+      .logo-top-left {
+        display: flex;
+        align-items: center;
+
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 27px;
+        text-align: center;
+        letter-spacing: -0.014em;
+        color: #3d4147;
+
+        height: 27px;
+        margin-right: 114px;
+      }
+      .icon-close {
+        width: 14px;
+        height: 23px;
+        cursor: pointer;
+        align-items: right;
+        top: calc(50% - 23px / 2 + 0.5px);
+      }
+    }
+    &__title {
+      font-family: "Noto Sans";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: center;
+      letter-spacing: 0.014em;
+      color: #3d4147;
+      position: relative;
+    }
+
+    .form-signup-operator {
+      width: 332px;
+      margin: auto auto;
+
+      .group-content {
+        margin-top: 12px;
+        text-align: center;
+
+        .v-select-role {
+          width: 100%;
+          height: 45px;
+          border: 1px solid #e0e4ef;
+          background: #fafafc;
+          margin-top: 4px;
+          .v-option-role {
+            font-size: 12px;
+          }
+          .v-option-role:hover {
+            background: red;
+          }
+        }
+        .v-select-role:focus-visible {
+          outline: none;
+          border: 1px solid #2191db;
+        }
+        .v-select-role:hover {
+          border: 1px solid #bccaee;
+        }
+        &__group-input {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          label {
+            font-family: "Noto Sans";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.004em;
+            color: #3d4147;
+            margin-top: 12px;
+          }
+
+          .group-item {
+            width: 100%;
+            height: 45px;
+            margin-top: 0px;
+            .mat-select {
+              display: flex;
+              align-items: center;
+            }
+          }
+          ::ng-deep .mat-form-field-infix {
+            height: 45px;
+            display: flex;
+            justify-content: center;
+          }
+
+          textarea {
+            resize: vertical;
+            height: 96px;
+            width: calc(100% - 10px);
+            border: 1px solid #e0e4ef;
+            border-radius: 2px;
+            background: #f9fbff;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+            color: #7b8e99;
+            margin-top: 4px;
+            text-align: left;
+            padding: 8px 0px 0px 10px;
+          }
+
+          textarea:hover {
+            border: 1px solid #bccaee;
+          }
+          textarea:focus-visible {
+            border: 1px solid #2191db;
+          }
+        }
+      }
+      .group-btn {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 24px;
+
+        button {
+          width: 158px;
+          height: 43px;
+          border-radius: 4px;
+        }
+        &__clear {
+          color: #2191db;
+          border: 1px solid #2191db;
+          background: #ffffff;
+          margin-right: 16px;
+          cursor: pointer;
+        }
+        &__clear:hover {
+          background: #ddf1ff;
+        }
+        &__submit {
+          color: #ffffff;
+          background: #2191db;
+          border: 0px;
+          cursor: pointer;
+        }
+        &__submit:hover {
+          background: #036db4;
+        }
+      }
+    }
+  }
+}
+
+button:disabled,
+button[disabled] {
+  background: #78c9ff;
+  border-radius: 4px;
+}
+.disable {
+  pointer-events: none;
+  background: #e8eaee !important;
+}
+
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-width: 1px !important;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  border-width: 1px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 45px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+::ng-deep
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 1px solid #bccaee;
+  opacity: 1;
+
+  .mat-form-field-outline-start,
+  .mat-form-field-outline-gap,
+  .mat-form-field-outline-end {
+    border: none;
+  }
+}
+
+// ::ng-deep
+//   .mat-form-field-appearance-outline.mat-focused
+//   .mat-form-field-outline {
+//   color: #e0e4ef;
+// }
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex .mat-form-field-outline {
+  border-radius: 2px;
+  background: #fafafc;
+}
+
+::ng-deep .mat-input-element {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.014em;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 7px;
+}

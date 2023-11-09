@@ -1,0 +1,94 @@
+
+<form [formGroup]="group">
+  <div class="product">
+    <div class="product__img">
+        <div class="group-img">
+            <img src="../../../../../assets/images/hotel1.jpg" alt="" />
+            <div class="product__mini">
+                <div class="img">
+                    <img src="../../../../../assets/images/hotel2.jpg" alt="" />
+                </div>
+                <div class="img">
+                    <img src="../../../../../assets/images/hotel1.jpg" alt="" />
+                </div>
+                <div class="img">
+                    <img src="../../../../../assets/images/hotel3.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <mat-tab-group>
+        <mat-tab label="Phòng khách sạn">
+            <div class="product__content">
+                <div class="title">
+                    <span>Phòng khách sạn</span>
+                </div>
+                <div class="price">
+                    <span>300.000đ/ngày
+
+            </span>
+                </div>
+                <!-- <div class="color">
+                    <div class="content">
+                        <span>Khung giờ</span>
+                    </div>
+                    <div class="group-color">
+                        <select class="time-slot" formControlName="time">
+                            <option *ngFor="let c of ListTime">
+                               {{c.time}}
+                            </option>
+                        </select>
+                    </div>
+                </div> -->
+
+                <div class="group-button">
+                    <button class="btn-add" (click)="closeDialog()">Xem thêm</button>
+                    <button class="btn-buy" (click)="addOrder()">Đặt phòng</button>
+
+                </div>
+                <div class="group-describe">
+                    <div class="describe-product">Mô tả phòng</div>
+                    <span>Chỗ nghỉ này đã cho chúng tôi biết rằng họ đang có những khoản đầu tư và nỗ lực lớn hướng tới sự bền vững bằng cách thực hiện các biện pháp có thể tác động đến môi trường và xã hội. Chúng tôi đã làm việc với các chuyên gia bao gồm Travalyst và Sustainalize để tạo nên chương trình Travel Sustainable – giúp bạn dễ dàng trải nghiệm thế giới theo cách bền vững hơn.</span>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Bình luận">
+            <div class="group-cmt">
+                <div class="table-cmt">
+                    <div class="group-content-cmt">
+                        <div class="group-user">
+                            <div class="avt-cmt">
+                                <img src="https://i.pinimg.com/564x/62/ed/6e/62ed6ea71018a57a3ab0c8c959d78cb0.jpg" alt="">
+                            </div>
+                            <div class="name-cmt">
+                                <span>LINH</span>
+                            </div>
+                        </div>
+                        <div class="comment-cmt">
+                            <div class="daytime-cmt">
+                                12/10/2023 15:07
+                            </div>
+                            <div class="content-cmt">
+                                Phòng đẹp, sạch sẻ.
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="group-page">
+                    <input matInput>
+                    <mat-icon svgIcon="icon-send"></mat-icon>
+
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+</form>
+

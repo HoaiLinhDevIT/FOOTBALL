@@ -1,0 +1,137 @@
+<div class="block">
+  <div class="block__header">
+    <app-header
+      [menuSetting]="menuSetting"
+      [dataMenu]="dataMenu"
+      class="header-customer"
+    ></app-header>
+  </div>
+  <div class="operator-container">
+    <div class="group-search">
+      <div class="operator-title">Quản lý sản phẩm</div>
+      <div class="operator-add">
+        <button
+          (click)="openDialog()"
+          class="btn-icon"
+          mat-raised-button
+          color="primary"
+        >
+          <mat-icon svgIcon="icon-plus"></mat-icon>
+          <span>Thêm mới</span>
+        </button>
+        <button
+        style="width: 150px"
+        class="btn-icon"
+        (click)="openCategory()"
+         mat-raised-button
+         color="primary">
+          <mat-icon svgIcon="icon-plus">
+          </mat-icon>
+          <span>Yêu cầu danh mục</span>
+
+        </button>
+      </div>
+      <div class="group-search-btn">
+        <div class="search-input">
+          <mat-label class="lbl-input-search"></mat-label>
+          <mat-form-field>
+            <input
+              matInput
+              maxlength="255"
+              placeholder="Tìm kiếm"
+              type="text"
+              name="text"
+              (input)="isShowIcon()"
+              [(ngModel)]="biding"
+            />
+          </mat-form-field>
+          <div class="clear-search">
+            <mat-icon
+              *ngIf="iconClear"
+              svgIcon="icon-close"
+              (click)="clearSearch()"
+            ></mat-icon>
+          </div>
+        </div>
+
+        <div class="btn-search-inline">
+          <button
+            mat-raised-button
+            (click)="handleSearchClk()"
+            class="btn-search"
+            color="primary"
+          >
+            <mat-icon
+              class="icon-search"
+              svgIcon="icon-search-op"
+              matTooltip="Tìm kiếm"
+              matTooltipPosition="below"
+              matTooltipClass="search-tooltip"
+            >
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-product">
+      <div class="group-title">
+        <div class="name">
+          <span>Tên sản phẩm</span>
+        </div>
+        <div class="amount">
+          <span>Số lượng</span>
+        </div>
+        <div class="price">
+          <span>Đơn giá</span>
+        </div>
+        <div class="promotion">
+          <span>giá khuyến mãi</span>
+        </div>
+        <div class="xx">
+          <span>Xuất xứ</span>
+        </div>
+        <div class="cl">
+          <span>Chất liệu</span>
+        </div>
+        <div class="option">
+          <span>Tuỳ chọn</span>
+        </div>
+      </div>
+      <div class="table-container">
+        <div class="group-product" *ngFor="let c of this.dataSource; index as i">
+          <div class="group-image">
+            <img class="image" [src]="c.image1" alt="">
+            <div class="group-name">
+              <span>{{c.productName}}</span>
+            </div>
+          </div>
+
+          <div class="group-number">
+            <span>{{c.amount}}</span>
+          </div>
+          <div class="group-price">
+            <span>{{formatPrice(c.price) || 0}} VNĐ</span>
+          </div>
+          <div class="promotion">
+            <span>{{formatPrice(c.discount) || 0}} VNĐ</span>
+          </div>
+          <div class="group-origin">
+            <span>{{c.origin}}</span>
+          </div>
+          <div class="group-substance">
+            <span>{{c.substance}}</span>
+          </div>
+
+          <div class="group-option">
+            <mat-icon svgIcon="icon-edit" (click)="openUpdate(this.dataSource[i])"></mat-icon>
+            <mat-icon svgIcon="icon-delete-op">
+
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

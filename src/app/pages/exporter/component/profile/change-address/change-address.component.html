@@ -1,0 +1,54 @@
+<div class="group-content" [formGroup]="exporterForm">
+  <div class="group-content__header">
+    <div class="title">{{"screen.profile.title.change-address1" | translate}}</div>
+    <mat-icon class="close" (click)="onNoClick()" svgIcon="icon-close"></mat-icon>
+  </div>
+  <div class="group-content__group-input">
+    <label class="mr-4">Mã bưu cục</label>
+    <div class="group-content__group-input__post-code">
+      <mat-form-field>
+        <input matInput formControlName="postCode1" maxlength="8"
+          (focus)="exporterForm.get('postCode1')?.clearValidators()" (input)="replaceCode('postCode1')"
+          (blur)="postCode1($event)" autocomplete="off" matTooltip="{{
+                    (exporterForm.get('postCode1')?.status !== 'VALID'
+                      ? utils.getMessError(exporterForm.get('postCode1')?.errors)
+                      : ''
+                    ) | translate
+                  }}" matTooltipClass="{{
+                    exporterForm.get('postCode1')?.status !== 'VALID'
+                      ? 'example-tooltip-red'
+                      : ''
+                  }}" required="false" />
+      </mat-form-field>
+
+    </div>
+    <div class="group-content__group-input__code-address">
+      <label class="mr-4">Địa chỉ</label>
+      <div class="group-content__group-input__code-address-display">
+        <mat-form-field class="disable postalCode1Adress1">
+          <input matInput formControlName="postalCode1Adress1" />
+        </mat-form-field>
+        <mat-form-field class="disable postalCode1Adress2">
+          <input matInput formControlName="postalCode1Adress2" />
+        </mat-form-field>
+      </div>
+      <div class="postalCode1Adress3">
+        <mat-form-field class="disable">
+          <input matInput formControlName="postalCode1Adress3" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="disable1">
+        <input matInput formControlName="postalCode1Adress4" maxlength="255" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="group-content__bottom">
+    <button mat-raised-button (click)="onNoClick()" class="cancel">
+      Đóng
+    </button>
+    <button mat-raised-button (click)="submitForm()" class="update">
+      Cập nhật
+    </button>
+  </div>
+</div>

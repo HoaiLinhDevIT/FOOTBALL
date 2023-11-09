@@ -1,0 +1,24 @@
+<div class="active-email">
+    <div class="active-email__logo">
+        <mat-icon
+          class="icon-logo"
+          svgIcon="icon-login-logo"
+          [routerLink]="['/home']"
+          matPrefix
+        ></mat-icon>
+    </div>
+    <div class="group-content">
+        <mat-icon
+          class="check-circle"
+          svgIcon="check-circle"
+          matPrefix
+        ></mat-icon>
+        <p class="group-content__success-title">Your account has been verified.</p>
+        <div class="group-content__success-desc">
+          Please back to login to use your service.
+        </div>
+        <button class="btn-to-login" [routerLink]="['/auth/login']">
+            Back to Log In
+        </button>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+@import "src/styles/styles-variables.scss";
+
+* {
+  font-family: "Noto Sans" !important;
+  font-style: normal !important;
+}
+
+::ng-deep .mat-dialog-container {
+  border-radius: 12px;
+  padding: 0;
+}
+
+.block {
+  width: 21.875rem;
+  // height: 21.938rem;
+  background: $white;
+  box-shadow: 0px 0px 16px rgba(72, 87, 100, 0.25);
+  border-radius: 12px;
+  padding: 32px 32px 32px 32px;
+  &__top {
+    .top-icon-left {
+      text-align: right;
+      .icon-close {
+        width: 11px;
+        height: 18px;
+        padding-top: 3px;
+        cursor: pointer;
+      }
+      .icon-alert {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+    .top-icon-center {
+      text-align: center;
+      .icon-alert {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+    .top-type {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.014em;
+      margin-top: 10px;
+    }
+  }
+  &__content {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 1.875rem;
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.014em;
+      color: #7B8E99;
+    }
+  }
+
+  &__contentchangephone{
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.014em;
+      color: #7B8E99
+    }
+
+    ul li {
+      font-size: 14px;
+      list-style-type: disc;
+      color: #7B8E99;
+    }
+  }
+
+  &__bottom {
+    text-align: center;
+    button {
+      width: 100%;
+      min-height: 43px;
+      background-color: #2191DB;
+      color: $white;
+      border-radius: 4px;
+      box-shadow: none;
+      flex-direction: row;
+      justify-content: center;
+    }
+    button:hover{
+      background-color: #036DB4;
+    }
+  }
+  &__bottom-confirm {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .btn-ok {
+      padding: 12px 36px;
+      width: 70%;
+      min-height: 43px;
+      background-color: #2191DB;
+      color: $white;
+      border-radius: 4px;
+      box-shadow: none;
+      flex-direction: row;
+      margin-left: 7px;
+    }
+    .btn-ok:hover {
+      background-color: #036DB4;
+    }
+    .btn-cancel {
+      width: auto;
+      padding: 12px 26px;
+      min-height: 43px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      color: #2191db;
+      border: 1px solid #2191db;
+      box-shadow: none;
+      flex-direction: row;
+    }
+    .btn-cancel:hover {
+      background-color: #DDF1FF;
+    }
+  }
+}
+.color-success {
+  color: #45bf7d !important;
+}
+.color-error {
+  color: #eb5757 !important;
+}
+.color-info {
+  color: #2191db;
+}
+.bg-color-success {
+  background-color: #45bf7d !important;
+}
+.bg-color-error {
+  background-color: #eb5757 !important;
+}
+.bg-color-info {
+  background-color: #2191db !important;
+}

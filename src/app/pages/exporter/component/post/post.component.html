@@ -1,0 +1,90 @@
+<div class="block">
+    <div class="block__header">
+      <app-header
+        [menuSetting]="menuSetting"
+        [dataMenu]="dataMenu"
+        class="header-customer"
+      ></app-header>
+    </div>
+    <div class="block__content">
+        <div class="group-search">
+            <div class="operator-title">Quản lý bài đăng</div>
+            <div class="operator-add">
+              <button
+              (click)="dialogCategory()"
+                class="btn-icon"
+                mat-raised-button
+                color="primary"
+              >
+                <mat-icon svgIcon="icon-plus"></mat-icon>
+                <span>Thêm mới</span>
+              </button>
+
+            </div>
+            <div class="group-search-btn">
+              <div class="search-input">
+                <mat-label class="lbl-input-search"></mat-label>
+                <mat-form-field>
+                  <input
+                    matInput
+                    maxlength="255"
+                    placeholder="Tìm kiếm"
+                    type="text"
+                    name="text"
+                  />
+                </mat-form-field>
+
+              </div>
+
+              <div class="btn-search-inline">
+                <button
+                  mat-raised-button
+                  class="btn-search"
+                  color="primary"
+                >
+                  <mat-icon
+                    class="icon-search"
+                    svgIcon="icon-search-op"
+                    matTooltip="Tìm kiếm"
+                    matTooltipPosition="below"
+                    matTooltipClass="search-tooltip"
+                  >
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        <div class="title">
+            <div class="image">
+                hình ảnh
+            </div>
+            <div class="name">
+                tiêu đề
+            </div>
+            <div class="content">
+                nội dung
+            </div>
+            <div class="option">
+                tuỳ chọn
+            </div>
+        </div>
+       <div class="group-table">
+        <div class="group-content" *ngFor="let c of AllCategory.results; index as i">
+            <div class="image">
+                <img [src]="c.image" alt="">
+            </div>
+            <div class="name">
+                {{c.title}}
+            </div>
+            <div class="content">
+               {{c.content}}
+            </div>
+            <div class="option">
+                <mat-icon svgIcon="icon-edit" (click)="dialogUpdate(AllCategory.results[i])"></mat-icon>
+
+                <mat-icon svgIcon="icon-delete-op" (click)="deleteCategory(c.id)"></mat-icon>
+            </div>
+        </div>
+       </div>
+    </div>
+</div>

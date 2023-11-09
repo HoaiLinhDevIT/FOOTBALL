@@ -1,0 +1,88 @@
+<div class="block">
+  <div class="group-all">
+    <div class="title">
+        <span>{{title}}</span>
+        <mat-icon svgIcon="icon-close" (click)="closeDialog()"></mat-icon>
+    </div>
+    <div class="group-add">
+        <form [formGroup]="group">
+            <div class="group-content">
+                <div class="group-content__group-input">
+                    <span>Tên sản phẩm</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="name">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Link hình ảnh chính</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="image1">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Link hình ảnh phụ 1</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="image2">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Link hình ảnh phụ 2</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="image3">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Link hình ảnh phụ 3</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="image4">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                  <span>Danh mục</span>
+                  <select formControlName="category">
+                    <option *ngFor="let a of listCategory">{{a.categoryName}}</option>
+                  </select>
+              </div>
+                <div class="group-content__group-input">
+                    <span>Số lượng</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="amount">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Đơn giá</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="price">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Giá khuyến mãi</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="discount">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Xuất xứ</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="origin">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                    <span>Chất liệu</span>
+                    <mat-form-field class="group-item">
+                        <input matInput formControlName="subtance">
+                    </mat-form-field>
+                </div>
+                <div class="group-content__group-input">
+                  <span>Mô tả</span>
+                  <textarea style="resize: none" formControlName="description"></textarea>
+              </div>
+                <div class="group-btn">
+                    <button mat-button class="cancel" (click)="closeDialog()">Đóng</button>
+                    <button mat-button class="add" (click)="saveUser()">Thêm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

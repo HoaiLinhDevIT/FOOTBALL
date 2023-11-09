@@ -1,0 +1,333 @@
+<div class="group-search-container">
+  <div class="header-group">
+    <div class="title-header">
+      <span class="title parent">{{parentName | translate}}</span>
+      <mat-icon class="right"
+                svgIcon="icon-right"></mat-icon>
+      <span class="title {{searchConfig.title2 ? 'parent' : 'screen'}}">{{searchConfig.title | translate}}</span>
+      <mat-icon *ngIf="searchConfig.title2 "
+                class="right"
+                svgIcon="icon-right"></mat-icon>
+      <span class="title screen">{{searchConfig.title2! | translate}}</span>
+      <button mat-raised-button
+              color="primary"
+              class="btn-icon"
+              matTooltip="{{ 'common.tooltip.add' | translate }}"
+              (click)="onBtnAddClick()"
+              *ngIf="btnConfig.btnAddMore">
+        <mat-icon svgIcon="icon-plus"></mat-icon>
+      </button>
+    </div>
+    <div class="box-right">
+      <!-- <div class="title-name">{{titleHeader}}</div> -->
+      <div class="expansion-panel"
+           *ngIf="searchConfig.config.length > 0">
+        <button mat-button
+                matTooltip="Export CSV"
+                matTooltipClass="tooltip-orange"
+                (click)="onBtnExportClick()"
+                *ngIf="btnConfig.btnExportCsv">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+        <button mat-button
+                (click)="handleExpansion()">
+          <mat-icon class="icon">{{icon}}</mat-icon>
+        </button>
+      </div>
+      <div class="expansion-panel-sub"
+           *ngIf="searchConfig.config.length === 0">
+      </div>
+    </div>
+  </div>
+  <div class="container"
+       *ngIf="searchConfig.config.length > 0"
+       [ngClass]="{'closed-search': !panelOpenState}">
+    <div class="search-group">
+      <div class="item-search">
+        <div *ngFor="let item of searchConfig.config; let i = index"
+             [formGroup]="searchGroup">
+          <ng-container [ngSwitch]="item.type">
+            <!-- ::::::::::::::::::::::::::::::::::INPUT:::::::::::::::::::::::::::::::::::::::: -->
+<div *ngSwitchCase="'input'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                <input matInput
+                       [formControlName]="item.id"
+                       placeholder="{{(item.placeholder || '') | translate}}"
+                       autocomplete="off">
+              </mat-form-field>
+            </div>
+            <!-- ::::::::::::::::::::::::::::::::::INPUT-NUMBER:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'inputNumber'"
+                 class="col input-dialog">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                <input matInput
+                       [formControlName]="item.id"
+                       type="number"
+                       [maxLength]="item.maxLength"
+                       placeholder="{{(item.placeholder || '') | translate}}"
+                       autocomplete="off">
+                <mat-icon *ngIf="item?.dataDialogSearch"
+                          class="ic-search"
+                          svgIcon="icon-len"
+                          (click)="handleGetDataDialog(item,item.id)"
+                          matTooltip="{{ 'common.button.search' | translate }}"></mat-icon>
+              </mat-form-field>
+            </div>
+
+            <!-- ::::::::::::::::::::::::::::::::::DATETIME:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'date'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                <input matInput
+                       autocomplete="off"
+                       [formControlName]="item.id"
+                       [matDatepicker]="dp">
+                <mat-datepicker-toggle matSuffix
+                                       [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <!-- ::::::::::::::::::::::::::::::::::SELECT:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'select'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                <mat-select [formControlName]="item.id" (selectionChange)="handelSelectChange($event,item.id)">
+                  <mat-option value="">{{ "common.drop-list-search.no-settings" | translate }}</mat-option>
+                  <mat-option *ngFor="let op of item.dataFrom"
+                              [value]="op.value">{{op.label}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <!-- ::::::::::::::::::::::::::::::::::FROM_TO_INPUT:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'input-from-to'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name | translate}}</mat-label>
+              <div class="from-to-search">
+                <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                  <input matInput
+                        [class.ip-search]="item?.dataDialogSearch"
+                         [formControlName]="item.id.concat('From')"
+                         placeholder="{{(item.placeholder || '') | translate}}"
+                         autocomplete="off"
+                         matTooltip="{{
+                          (searchGroup.get(item.id.concat('From'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('From'))?.touched
+                            ? utils.getMessError(
+                                searchGroup.get(item.id.concat('From'))?.errors,languageService.get(item.name)
+                              )
+                            : '' ) | translate
+                        }}"
+                             matTooltipClass="{{
+                          searchGroup.get(item.id.concat('From'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('From'))?.touched
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}" >
+                  <mat-icon *ngIf="item?.dataDialogSearch"
+                            class="ic-search"
+                            svgIcon="icon-len"
+                            (click)="handleGetDataDialog(item,item.id.concat('From'))"
+                            matTooltip="{{ 'common.button.search' | translate }}"></mat-icon>
+                </mat-form-field>
+                <span>~</span>
+                <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                  <input matInput
+                         [formControlName]="item.id.concat('To')"
+                         placeholder="{{(item.placeholder || '') | translate}}"
+                         autocomplete="off"
+                         matTooltip="{{
+                          (searchGroup.get(item.id.concat('To'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('To'))?.touched
+                            ? utils.getMessError(
+                                searchGroup.get(item.id.concat('To'))?.errors,languageService.get(item.name)
+                              )
+                            : '' ) | translate
+                        }}"
+                             matTooltipClass="{{
+                          searchGroup.get(item.id.concat('To'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('To'))?.touched
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}"
+                         >
+                  <mat-icon *ngIf="item?.dataDialogSearch"
+                            svgIcon="icon-len"
+                            class="ic-search"
+                            (click)="handleGetDataDialog(item,item.id.concat('To'))"
+                            matTooltip="{{ 'common.button.search' | translate }}"></mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!-- ::::::::::::::::::::::::::::::::::FROM_TO_SELECT:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'select-from-to'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <div class="from-to-search">
+                <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                  <mat-select [formControlName]="item.id.concat('From')">
+                     <mat-option value="">{{ "common.drop-list-search.no-settings" | translate }}</mat-option>
+                    <mat-option *ngFor="let op of item.dataFrom"
+                                [value]="op.value">{{op.label}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <span>~</span>
+                <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                  <mat-select [formControlName]="item.id.concat('To')">
+                     <mat-option value="">{{ "common.drop-list-search.no-settings" | translate }}</mat-option>
+                    <mat-option *ngFor="let op of item.dataTo"
+                                [value]="op.value">{{op.label}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!-- ::::::::::::::::::::::::::::::::::FROM_TO_DATETIME:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'date-from-to'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <div class="from-to-search">
+                <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                  <input matInput
+                         autocomplete="off"
+                         [formControlName]="item.id.concat('From')"
+                         [matDatepicker]="dpFrom"
+                         matTooltip="{{
+                          (searchGroup.get(item.id.concat('From'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('From'))?.touched
+                            ? utils.getMessError(
+                                searchGroup.get(item.id.concat('From'))?.errors,languageService.get(item.name)
+                              )
+                            : '' ) | translate
+                        }}"
+                             matTooltipClass="{{
+                          searchGroup.get(item.id.concat('From'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('From'))?.touched
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}"
+                         >
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="dpFrom"> <mat-icon
+                                         svgIcon="icon-calendar"
+                                         matDatepickerToggleIcon
+                                       ></mat-icon></mat-datepicker-toggle>
+                  <mat-datepicker #dpFrom></mat-datepicker>
+                </mat-form-field>
+                <span>~</span>
+                <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                  <input matInput
+                         autocomplete="off"
+                         [formControlName]="item.id.concat('To')"
+                         [matDatepicker]="dpTo"
+                         matTooltip="{{
+                          (searchGroup.get(item.id.concat('To'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('To'))?.touched
+                            ? utils.getMessError(
+                                searchGroup.get(item.id.concat('To'))?.errors,languageService.get(item.name)
+                              )
+                            : '' ) | translate
+                        }}"
+                             matTooltipClass="{{
+                          searchGroup.get(item.id.concat('To'))?.status !== 'VALID' &&
+                          searchGroup.get(item.id.concat('To'))?.touched
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}"
+                         >
+                  <mat-datepicker-toggle matSuffix
+                                         [for]="dpTo"> <mat-icon
+                                         svgIcon="icon-calendar"
+                                         matDatepickerToggleIcon
+                                       ></mat-icon></mat-datepicker-toggle>
+                  <mat-datepicker #dpTo></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- ::::::::::::::::::::::::::::::::::INPUT TEXT VALIDATE:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'input-text'"
+                 class="col">
+              <mat-label class="lbl-input-search">{{item.name| translate}}</mat-label>
+              <mat-form-field [ngStyle]="{width : item.width+'px'}">
+                <input matInput
+                       [formControlName]="item.id"
+                       matTooltip="{{
+                        (searchGroup.get(item.id)?.status !== 'VALID' &&
+                        searchGroup.get(item.id)?.touched
+                          ? utils.getMessError(
+                              searchGroup.get(item.id)?.errors,languageService.get(item.name)
+                            )
+                          : '' ) | translate
+                      }}"
+                           matTooltipClass="{{
+                        searchGroup.get(item.id)?.status !== 'VALID' &&
+                        searchGroup.get(item.id)?.touched
+                          ? 'example-tooltip-red'
+                          : ''
+                      }}"
+                       placeholder="{{(item.placeholder || '') | translate}}"
+                       autocomplete="off">
+              </mat-form-field>
+            </div>
+            <!-- ::::::::::::::::::::::::::::::::::RADIO:::::::::::::::::::::::::::::::::::::::: -->
+            <div *ngSwitchCase="'radio'"
+                 class="col">
+              <mat-label class="lbl-input-search margin-bottom-5">{{item.name| translate}}</mat-label>
+              <div class="raido"
+                   [ngStyle]="{width : item.width+'px'}">
+                <mat-radio-group [formControlName]="item.id">
+                  <mat-radio-button class="example-radio-button"
+                                    *ngFor="let season of item.radioList"
+                                    [value]="season.code">
+                    {{season.name | translate}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="btn-search-inline"
+             *ngIf="searchConfig.config.length > 0">
+          <button mat-raised-button
+                  color="primary"
+                  [disabled]="searchGroup.invalid"
+                  (click)="onBtnSearchClk()">
+            {{'common.button.search'|translate}}
+          </button>
+          <button mat-stroked-button
+                  class="clear-action"
+                  (click)="onBtnClearClk()">
+            <span class="clear">
+              {{'common.button.clear'|translate}}
+            </span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="btn-area search"
+         *ngIf="searchConfig.config.length > 0 && !inline">
+      <button mat-stroked-button
+              class="clear"
+              (click)="onBtnClearClk()">
+        <span>
+          {{'common.button.clear'|translate}}
+        </span>
+      </button>
+      <button mat-raised-button
+              class="seach-action"
+              color="primary"
+              (click)="onBtnSearchClk()">
+        {{'common.button.search'|translate}}
+      </button>
+    </div> -->
+  </div>
+</div>

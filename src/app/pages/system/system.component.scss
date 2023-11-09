@@ -1,0 +1,99 @@
+@import "../../../../src/styles/styles-variables.scss";
+
+
+.main {
+  display: flex;
+  // overflow: hidden;
+  width: 100%;
+  height: 100%;
+  // height: 100%;
+  background: #f4f6fa;
+  align-items: center;
+  max-height: 695px;
+}
+
+.children {
+  width: 100%;
+  height: 100%;
+  max-width: 85%;
+  min-width: 500px;
+  padding: 0 4px 0px 4px;
+
+  background-color: #ffffff;
+  margin: auto;
+
+  // overflow-x: hidden;
+}
+
+nz-content {
+  margin: 0 16px;
+  min-height: 84vh;
+}
+
+.dashboard {
+  display: flex;
+  height: calc(100% - 81px);
+  background: #f4f6fa;
+  align-items: center;
+  padding-top: 8px;
+}
+
+::ng-deep .app-header {
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  z-index: 1020;
+}
+
+.header-top {
+  border-bottom: 1px solid #009cc3;
+  background-color: #f0f3f5;
+  position: fixed;
+  z-index: 1020;
+  width: 100%;
+}
+
+::ng-deep .example-tooltip-red {
+  background: $toolTipsError;
+  border-radius: 3px;
+  color: $white;
+  font-size: 10px;
+}
+::ng-deep .example-tooltip-info {
+  background: $color-primary;
+  border-radius: 3px;
+  color: $white;
+  font-size: 10px;
+  word-break: break-word;
+  word-wrap: wrap;
+  max-width: 200px;
+}
+
+::ng-deep button {
+  box-shadow: none !important;
+}
+::ng-deep .mat-checkbox-frame {
+  border-width: 1px !important;
+}
+
+::ng-deep .mat-datepicker-content {
+  .mat-calendar {
+    width: 200px !important;
+    height: 240px !important;
+
+    .mat-calendar-header {
+      padding: 0;
+      .mat-calendar-controls {
+        margin: 0% calc(9.7142857143% - 16px);
+      }
+    }
+  }
+}
+
+::ng-deep .mat-checkbox-disabled {
+  &:not(.mat-checkbox-checked) {
+    .mat-checkbox-frame {
+      background-color: $color-netural;
+    }
+  }
+}

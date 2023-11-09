@@ -1,0 +1,98 @@
+<div class="container">
+    <form [formGroup]="phoneForm">
+        <div *ngIf="!isOtp" class="phone">
+            <div class="phone__header">
+                <label class="phone__header-label">Phone Verification</label>
+                <mat-icon class="phone__header-icon" svgIcon="icon-close" routerLink="/"></mat-icon>
+            </div>
+            <div class="phone__item">
+                <label class="phone__item-label">Phone number</label>
+                <div class="group-items">
+                    <mat-form-field class="group-item code-phone-input">
+                        <mat-select formControlName="codePhone">
+                            <mat-option
+                            *ngFor="let c of listCountry"
+                            [value]="c.countryId"
+                            >+{{ c.countryId }}</mat-option
+                            >
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="phone-input">
+                    <input
+                        (input)="replaceName('phone')"
+                        matInput
+                        placeholder="Your phone number"
+                        formControlName="phone"
+                        maxlength="15"
+                        (focus)="phoneForm.get('phone')?.clearValidators()"
+                        (blur)="validatorPhone()"
+                        autocomplete="off"
+                        matTooltip="{{
+                        (phoneForm.get('phone')?.status !== 'VALID'
+                            ? utils.getMessError(phoneForm.get('phone')?.errors)
+                            : ''
+                        ) | translate
+                        }}"
+                        matTooltipClass="{{
+                            phoneForm.get('phone')?.status !== 'VALID'
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}"
+                    />
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="phone__bottom">
+                <button class="button-close" mat-raised-button routerLink="/trouble-logging">Back</button>
+                <button class="button-submit" mat-raised-button (click)="submit()">Send verification code</button>
+            </div>
+        </div>
+        <div *ngIf="isOtp" class="isOtp">
+            <div class="isOtp__header">
+                <label class="isOtp__header-label">OTP Verification</label>
+                <mat-icon class="isOtp__header-icon" svgIcon="icon-close" routerLink="/"></mat-icon>
+            </div>
+            <div class="isOtp__item">
+                <div class="content">
+                    {{"screen.register.we-send-to" | translate}}
+                    <b
+                      >+{{ phoneForm.get("codePhone")?.value
+                      }}{{ maskPhone(phoneForm.get("phone")?.value) }}</b
+                    >
+                    </div>
+                    <div class="otpCode">
+                        <label> {{"screen.register.6-digit" | translate}}</label>
+                        <mat-form-field class="group-item">
+                        <input
+                            maxlength="6"
+                            matInput
+                            (input)="replaceName('faxCodePhone')"
+                            placeholder="Enter code here"
+                            formControlName="faxCodePhone"
+                            (focus)="phoneForm.get('faxCodePhone')?.clearValidators()"
+                            autocomplete="off"
+                            (blur)="validatorPhoneCode()"
+                            matTooltip="{{
+                            (phoneForm.get('faxCodePhone')?.status !== 'VALID'
+                                ? utils.getMessError(
+                                    phoneForm.get('faxCodePhone')?.errors
+                                )
+                                : ''
+                            ) | translate
+                            }}"
+                            matTooltipClass="{{
+                                phoneForm.get('faxCodePhone')?.status !== 'VALID'
+                                ? 'example-tooltip-red'
+                                : ''
+                            }}"
+                        />
+                        </mat-form-field>      
+                    </div>
+            </div>
+            <div class="isOtp__bottom">
+                <button class="button-close" mat-raised-button routerLink="/trouble-logging">Back</button>
+                <button class="button-save" mat-raised-button (click)="verifyOtp()">Save</button>
+            </div>
+        </div>
+    </form> 
+</div>

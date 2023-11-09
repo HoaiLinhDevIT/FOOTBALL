@@ -1,0 +1,213 @@
+@import "src/styles/styles-variables.scss";
+
+* {
+  font-family: "Noto Sans" !important;
+  font-style: normal !important;
+}
+
+::ng-deep .mat-dialog-container {
+    border-radius: 12px;
+    padding: 0;
+  }
+
+.container{
+    width: 452px;
+    padding: 29px 60px;
+    background: $white;
+    border-radius: 12px;
+    &__header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        &-title{
+            font-size: 20px;
+            font-weight: 600;
+            color: #3D4147;
+        }
+        .icon-close {
+            width: 11px;
+            height: 18px;
+            padding-top: 3px;
+            cursor: pointer;
+          }
+        p{
+            font-size: 12px;
+        }
+    }
+    &__body{
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        font-size: 12px;
+        &-email{
+            display: grid;
+            align-items: center;
+            margin-top: 1rem;
+            .label-email{
+                font-weight: 600;
+                font-size: 12px;
+                color: #3D4147;
+            }
+            ::ng-deep .mat-form-field {
+            width: 100%;
+            }
+            ::ng-deep .mat-form-field-wrapper {
+            margin: 0 !important;
+            }
+            ::ng-deep .mat-form-field-outline-end {
+            border-width: 1px !important;
+            }
+
+            ::ng-deep .mat-form-field-outline-start {
+            border-width: 1px !important;
+            }
+            ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+            margin-top: 0;
+            height: 45px;
+            font-family: "Noto Sans";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            padding-top: 7px;
+            }
+            ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
+                background-color: #FAFAFC;
+            }
+        }
+        &-detail{
+            margin-top: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            background: #FAFAFC;
+            .label-detail{
+                font-weight: 600;
+                font-size: 12px;
+                color: #3D4147;
+            }
+            ::ng-deep .mat-form-field {
+                width: 100%;
+                }
+                ::ng-deep .mat-form-field-wrapper {
+                margin: 0 !important;
+                }
+                ::ng-deep .mat-form-field-outline-end {
+                border-width: 1px !important;
+                }
+    
+                ::ng-deep .mat-form-field-outline-start {
+                border-width: 1px !important;
+                }
+                ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+                margin-top: 0;
+                height: 100%;
+                font-family: "Noto Sans";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                padding-top: 7px;
+                }
+                ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
+                    background-color: #FAFAFC;
+                }
+
+                ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix textarea {
+                    height: 120px !important;
+                }
+        }
+        &-file{
+            input[type="file"] {
+               display: none;
+            }
+            .custom-file-upload {
+               color: #2191DB;
+                display: inline-block;
+                padding: 12px 0px;
+                cursor: pointer;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                letter-spacing: 0.004em;
+            }
+            .custom-file-upload:hover{
+                text-decoration: underline;
+                color: #036DB4;
+            }
+            .choose-file{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                background: #F4F6FA;
+                align-items: center;
+                padding: 4px 8px;
+                margin-bottom: 16px;
+                .name-file{
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: #2191DB;
+                }
+                .delete-file{
+                    mat-icon{
+                        width: 11px;
+                        height: 18px;
+                        padding-top: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    &__captcha{
+        transform:scale(0.77);
+        transform-origin:0 0;
+    }
+    &__button{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0px 0px;
+        .button-close{
+            padding: 0px 29px;
+            min-height: 43px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            color: #2191db;
+            border: 1px solid #2191db;
+            box-shadow: none;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .button-close:hover{
+            background-color: #DDF1FF;
+            cursor: pointer;
+        }
+        .button-send-mail{
+            padding: 12px 77px;
+            min-height: 43px;
+            background-color: #2191DB;
+            color: $white;
+            border-radius: 4px;
+            box-shadow: none !important;
+            border: none;
+            flex-direction: row;
+            justify-content: center;
+            margin-left: 7px;
+        }
+        .button-send-mail:hover{
+            background-color: #036DB4;
+            cursor: pointer;
+        }
+    }
+}
+
+button:disabled,
+button[disabled]{
+  background: #78C9FF;
+border-radius: 4px;
+}
+.disable{
+  pointer-events:none;
+  background: #E8EAEE !important;
+}

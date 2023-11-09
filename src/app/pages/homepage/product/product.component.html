@@ -1,0 +1,95 @@
+<div class="block">
+  <div class="container-navbar">
+    <div class="navbar">
+        <div class="navbar-logo">
+            <mat-icon class="navbar-logo-icon" [svgIcon]="hompageLogo" matPrefix [routerLink]="['/home']"></mat-icon>
+        </div>
+        <div class="navbar-menu">
+            <div class="header__menu">
+                <!-- <div class="header__menu__tilte">
+        Trở thành nhà cung cấp
+      </div> -->
+                <div class="header__menu--item" routerLink="auth/RegisterExporterComponent" *ngIf="checklogin === undefined">
+                    Trở thành nhà cung cấp
+                </div>
+            </div>
+        </div>
+        <div class="navbar-buttons">
+            <div class="nav-buttons-ct">
+                <div class="buttons-login" routerLink="auth/login" *ngIf="checklogin === undefined">
+                    <p>Đăng Nhập</p>
+                </div>
+                <div class="buttons-register" routerLink="auth/register" *ngIf="checklogin === undefined">
+                    <p>Đăng ký</p>
+                </div>
+                <div class="cart" *ngIf="checklogin !== undefined">
+                  <mat-icon  svgIcon="icon-user-setting" routerLink="auth/login"
+                  *ngIf="checklogin !== undefined"
+                  ></mat-icon>
+              </div>
+                <div class="cart" *ngIf="checklogin !== undefined">
+                    <mat-icon [routerLink]="['/cart']" svgIcon="icon-cart"></mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <mat-tab-group
+    (selectedTabChange)="getAllProductByCategory($event)"
+    mat-align-tabs="start"
+    class="tab-group"
+  >
+    <!-- =============== START TAB [] ============== -->
+    <mat-tab [label]="tab.categoryName" *ngFor="let tab of listCategory">
+      <ng-template matTabContent>
+        <div class="product-container">
+
+          <div class="group-block">
+              <div class="product-block"  *ngFor="let c of allProduct; index as i" (click)="dialogCreate(allProduct[i])">
+                  <div class="product-img">
+                      <img [src]="c.image1" alt="">
+                  </div>
+                  <div class="product-content">
+                      <div class="product-name">{{c.productName}}</div>
+                      <div class="product-price"> <span>Giá:</span> <span>{{c.price}}</span></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <!-- =============button================ -->
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-left">
+                <div class="logo">
+                    <mat-icon svgIcon="icon-logo-football"></mat-icon>
+                </div>
+                <p>Cửa hàng chúng tôi chuyên cung cấp khách sạn, đồ lưu niệm ở trong nước và quốc tế.</p>
+            </div>
+            <div class="footer-center">
+                <div class="footer-info">THÔNG TIN
+                    <span class="notes" [routerLink]="['/news']">Tin tức</span>
+                    <span class="notes" [routerLink]="['/pitch']">Giới thiệu</span>
+                    <span class="notes">Liên hệ</span>
+                    <span class="notes" [routerLink]="['/tutorial']">Hướng dẫn Size</span>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-content">MINI MENU
+                    <span class="notes">Áo thể thao</span>
+                    <span class="notes">Quần thể thao</span>
+                    <span class="notes">Phụ kiện</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">COPYRIGHT &copy; VERTURE HOTEL</div>
+    </div>
+
+
+
+
+
+</div>

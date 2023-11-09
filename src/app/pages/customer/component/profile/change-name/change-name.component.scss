@@ -1,0 +1,82 @@
+@import "../../../../../../styles/styles-variables.scss";
+@import "../../../../../../styles/scss/breakpoints.scss";
+
+  .group-content {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    box-shadow: 0px 0px 16px rgba(196, 194, 194, 0.12);
+    border-radius: 12px;
+    padding: 2rem 3.75rem;
+    background: #FFFFFF;
+    @include max-desktop-up-500 {
+      padding: 1rem 1rem;
+    }
+  
+    &__header {
+      padding-bottom: 1rem;
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-style: normal;
+      line-height: 27px;
+      letter-spacing: -0.014em;
+      color: #3D4147;
+  
+      .close {
+        width: 12px;
+        cursor: pointer;
+      }
+    }
+
+    &__group-input {
+      &__label {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.004em;
+        color: #3D4147;
+      }
+    }
+  
+    &__bottom {
+      display: flex;
+      margin-top: 1rem;
+      column-gap: 8px;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+  
+      button {
+        width: 100%;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: 0.014em;
+        height: 43px;
+      }
+
+      .cancel {
+        color: #2191DB;
+        background: #FFFFFF;
+        border: 1px solid #2191DB;
+         width: 7.688rem;
+
+        &:hover {
+          background: #DDF1FF;
+        }
+      }
+
+      .update {
+        color: #FFFFFF;
+        background: #2191DB;
+        width: 257px;
+
+        &:hover {
+          background: #036DB4;
+        }
+      }
+    }
+  }

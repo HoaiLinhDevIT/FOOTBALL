@@ -1,0 +1,156 @@
+<div class="block">
+  <app-header [dataMenu]="dataMenu" [menuSetting]="menuSetting"></app-header>
+</div>
+<div class="order">
+  <div class="order__content">
+    <div class="order__content-title">
+      <mat-label>QUẢN LÝ DANH MỤC</mat-label>
+    </div>
+    <div class="order__content-btn-add">
+      <button class="btn-add-new" (click)="dialogCreate()">
+        <mat-icon svgIcon="icon-plus" class="icon-plus"></mat-icon>
+        <span class="text-add-new">Thêm mới</span>
+      </button>
+    </div>
+
+    <div class="order__content-tab">
+      <mat-tab-group
+        (selectedTabChange)="onTabChanged($event)"
+        mat-align-tabs="start"
+        class="tab-group"
+      >
+        <!-- =============== START TAB [] ============== -->
+        <mat-tab [label]="tab" *ngFor="let tab of listTab">
+          <ng-template matTabContent>
+            <div class="tab-item">
+              <div class="tab-item__input">
+                <mat-form-field appearance="outline" class="form-search">
+                  <input
+                    maxlength="255"
+                    [(ngModel)]="requestParam.keyWord"
+                    (input)="isShowIcon()"
+                    (keydown.enter)="searchInput()"
+                    matInput
+                    placeholder="Tìm kiếm"
+                  />
+                </mat-form-field>
+                <div class="clear-search">
+                  <mat-icon
+                    *ngIf="iconClear"
+                    svgIcon="icon-close"
+                    (click)="clearSearch()"
+                  ></mat-icon>
+                </div>
+                <div
+                  class="btn-search"
+                  (click)="searchInput()"
+                  matTooltip="Tìm kiếm"
+                  matTooltipClass="class-custom"
+                >
+                  <mat-icon
+                    svgIcon="icon-search-op"
+                    class="search-icon"
+                  ></mat-icon>
+                </div>
+              </div>
+            </div>
+            <div #autoScroll class="block-table">
+              <ng-container>
+                <div *ngFor="let data of AllCategory.results; index as a">
+                  <div class="form-table">
+                    <div class="order-info">
+                      <div class="content">
+                        <div class="information">
+                          <div class="name" matTooltipClass="class-custom">
+                            {{ a }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="group-price">
+                      <div class="price">
+                        <div class="country">{{ data.categoryName }}</div>
+                      </div>
+                      <div class="due-date">
+                        <div class="bal-due">{{ data.role }}</div>
+                      </div>
+                    </div>
+                    <div class="group-button">
+                      <div class="btn-price"></div>
+                      <div class="icon-check">
+                        <div class="check" *ngIf="data.active === '1'">
+                          <mat-icon
+                            class="delete-order"
+                            svgIcon="icon-check"
+                            matTooltip="Xác nhận"
+                            matTooltipClass="class-custom"
+                            (click)="activeCategory(data.id)"
+                          ></mat-icon>
+                        </div>
+                        <div class="bell">
+                          <mat-icon
+                            class="delete-order"
+                            svgIcon="icon-edit"
+                            matTooltip="Chỉnh sửa"
+                            matTooltipClass="class-custom"
+                            (click)="dialogUpdate(AllCategory.results[a])"
+                          ></mat-icon>
+                        </div>
+                        <div class="bell">
+                          <mat-icon
+                            class="delete-order"
+                            svgIcon="icon-delete-op"
+                            matTooltip="Xoá"
+                            matTooltipClass="class-custom"
+                            (click)="deleteCategory(data.id)"
+                          ></mat-icon>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="AllCategory && AllCategory.noRecordInPage < 1"
+                  class="no-data"
+                >
+                  <!-- {{requestParam.keyWord ? 'No result found. Please try different keyword.' : 'There is no data to be displayed.'}} -->
+                  {{ noDataMsg }}
+                </div>
+              </ng-container>
+            </div>
+            <!-- =============button================ -->
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div class="btn-page" *ngIf="AllCategory.totalPage > 1">
+    <div class="btn-page-previous">
+      <button
+        mat-stroked-button
+        *ngIf="AllCategory.currentPage > 1"
+        color="default"
+        (click)="btnPrevioues()"
+      >
+        Lui
+      </button>
+    </div>
+
+    <div class="page-title">
+      Trang {{ AllCategory.currentPage }} / {{ AllCategory.totalPage }}
+    </div>
+
+    <div class="btn-page-next">
+      <button
+        mat-stroked-button
+        *ngIf="AllCategory.currentPage < AllCategory.totalPage"
+        color="default"
+        (click)="btnNext()"
+      >
+        Tới
+      </button>
+    </div>
+  </div>
+</div>

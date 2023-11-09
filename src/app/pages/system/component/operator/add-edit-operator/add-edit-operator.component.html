@@ -1,0 +1,103 @@
+<div class="operato-block">
+  <div class="operator-signup">
+    <div class="operator-signup__logo">
+      <span class="logo-top-left">Đăng ký quản trị viên</span>
+
+      <mat-icon class="icon-close" svgIcon="icon-close" (click)="afterCloseDialog()" matPrefix></mat-icon>
+    </div>
+    <div class="form-signup-operator">
+      <form [formGroup]="operatorGroup">
+        <div class="group-content">
+          <div class="group-content__group-input">
+            <label>Email <span style="color: red;">*</span></label>
+            <mat-form-field class="group-item">
+              <input matInput formControlName="email" autocomplete="off" maxlength="255"
+                (focus)="operatorGroup.get('email')?.clearValidators()" (blur)="verifyMail()" matTooltip="{{
+                  (operatorGroup.get('email')?.status !== 'VALID'
+                    ? utils.getMessError(operatorGroup.get('email')?.errors)
+                    : ''
+                  ) | translate
+                }}" matTooltipClass="{{
+                  operatorGroup.get('email')?.status !== 'VALID'
+                    ? 'example-tooltip-red'
+                    : ''
+                }}" />
+            </mat-form-field>
+
+            <label>Họ và tên <span style="color: red;">*</span></label>
+            <mat-form-field class="group-item">
+              <input matInput formControlName="userName" autocomplete="off" maxlength="100"
+                (focus)="operatorGroup.get('userName')?.clearValidators()" (blur)="verifyUserName()" matTooltip="{{
+                  (operatorGroup.get('userName')?.status !== 'VALID'
+                    ? utils.getMessError(operatorGroup.get('userName')?.errors)
+                    : ''
+                  ) | translate
+                }}" matTooltipClass="{{
+                  operatorGroup.get('userName')?.status !== 'VALID'
+                    ? 'example-tooltip-red'
+                    : ''
+                }}" />
+            </mat-form-field>
+
+            <label>Mật Khẩu <span style="color: red;">*</span></label>
+            <mat-form-field class="group-item">
+              <input matInput formControlName="password" autocomplete="off" maxlength="100"
+                [type]="showPassword ? 'text' : 'password'" (focus)="operatorGroup.get('password')?.clearValidators()"
+                (blur)="validatorPass()" matTooltip="{{
+                  (operatorGroup.get('password')?.status !== 'VALID'
+                    ? utils.getMessError(operatorGroup.get('password')?.errors)
+                    : ''
+                  ) | translate
+                }}" matTooltipClass="{{
+                  operatorGroup.get('password')?.status !== 'VALID'
+                    ? 'example-tooltip-red'
+                    : ''
+                }}" />
+              <mat-icon matSuffix class="icon-hidden-password" [svgIcon]="
+                showPassword ? 'icon-hidden-password' : 'icon-show-password'
+              " (click)="togglePassWord()"></mat-icon>
+            </mat-form-field>
+
+            <label>Nhập lại mật khẩu <span style="color: red;">*</span></label>
+            <mat-form-field class="group-item">
+              <input matInput formControlName="cfpassword" autocomplete="off" maxlength="100"
+                [type]="showCfPassword ? 'text' : 'password'"
+                (focus)="operatorGroup.get('cfpassword')?.clearValidators()" (blur)="validatorCfPass()" matTooltip="{{
+                  (operatorGroup.get('cfpassword')?.status !== 'VALID'
+                    ? utils.getMessError(operatorGroup.get('cfpassword')?.errors)
+                    : ''
+                  ) | translate
+                }}" matTooltipClass="{{
+                  operatorGroup.get('cfpassword')?.status !== 'VALID'
+                    ? 'example-tooltip-red'
+                    : ''
+                }}" />
+              <mat-icon matSuffix class="icon-hidden-password" [svgIcon]="
+              showCfPassword
+                ? 'icon-hidden-password'
+                : 'icon-show-password'
+            " (click)="toggleCfPassWord()"></mat-icon>
+            </mat-form-field>
+
+
+
+            <label>Mô tả</label>
+
+            <textarea (blur)="verifyDescription()" style="resize: none" maxlength="500" matInput class="description"
+              formControlName="description">
+            </textarea>
+          </div>
+        </div>
+      </form>
+      <div class="group-btn">
+        <button class="group-btn__clear" (click)="afterCloseDialog()">
+          Đóng
+        </button>
+        <button class="group-btn__submit" mat-raised-button (click)="saveUser()"
+          [ngClass]="!isDisable ? 'disable' : ''">
+          Đăng ký
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

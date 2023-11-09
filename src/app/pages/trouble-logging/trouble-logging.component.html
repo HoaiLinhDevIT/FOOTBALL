@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="container__top">
+        <div class="container__top-logo">
+            <mat-icon
+            class="container__top-logo-icon"
+            [svgIcon]="hompageLogo"
+            routerLink="/"
+            matPrefix
+          ></mat-icon>
+        </div>
+        <div class="container__top-button">
+            <div class="buttons-ct">
+                <!-- <div class="buttons-search"><mat-icon svgIcon="icon-search" matPrefix></mat-icon></div> -->
+                <div class="buttons-login" routerLink="/auth/login">
+                  <p>{{'common.button.Login'| translate}}</p>
+                </div>
+                <div class="buttons-register" routerLink="/auth/register">
+                  <p>{{'common.button.sign_up'| translate}}</p>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div class="block">
+  <div class="trouble-logging">
+    <div class="trouble-logging__item">
+      <div class="trouble-logging__item-title">
+        <label class="trouble-logging__item-title-top"><Strong>{{'screen.trouble-loggin.title.title-confirm'| translate}}</Strong></label>
+        <br>
+        <mat-label class="trouble-logging__item-title-header">{{'screen.trouble-loggin.title.content'| translate}}</mat-label>
+      </div>
+
+      <div class="trouble-logging__item-body">
+        <ng-container *ngFor="let item of dataMenu">
+          <div class="trouble-logging__item-body-ex" (click)="onClickMenuClick(item)">
+            <mat-label class="item-label">{{item.name | translate}}</mat-label>
+            <div class="item-right"></div>
+          </div>
+          <hr>
+        </ng-container>
+      </div>
+    </div>
+</div>
+</div>

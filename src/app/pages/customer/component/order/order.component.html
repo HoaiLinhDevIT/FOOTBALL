@@ -1,0 +1,113 @@
+<div class="order">
+  <div class="order__header">
+    <app-header [menuSetting]="menuSetting" [dataMenu]="dataMenu" class="header-customer"></app-header>
+  </div>
+  <div class="order__content">
+    <div class="order__content-title">
+      <mat-label>QUẢN LÝ ĐƠN HÀNG</mat-label>
+    </div>
+    <div class="order__content-tab">
+      <mat-tab-group
+        (selectedTabChange)="onTabChanged($event)"
+        mat-align-tabs="start"
+        class="tab-group"
+      >
+        <!-- =============== START TAB [] ============== -->
+        <mat-tab [label]="tab" *ngFor="let tab of listTab">
+          <ng-template matTabContent>
+            <div class="tab-item">
+              <div class="tab-item__input">
+                <mat-form-field appearance="outline" class="form-search">
+                  <input
+                    maxlength="255"
+                    [(ngModel)]="searchContent"
+                    (input)="isShowIcon()"
+                    (keydown.enter)="searchInput()"
+                    matInput
+                    placeholder="Tìm kiếm"
+                  />
+                </mat-form-field>
+                <div class="clear-search">
+                  <mat-icon
+                    *ngIf="iconClear"
+                    svgIcon="icon-close"
+                    (click)="clearSearch()"
+                  ></mat-icon>
+                </div>
+                <div
+                  class="btn-search"
+                  (click)="searchInput()"
+                  matTooltip="Tìm kiếm"
+                  matTooltipClass="class-custom"
+                >
+                  <mat-icon
+                    svgIcon="icon-search-op"
+                    class="search-icon"
+                  ></mat-icon>
+                </div>
+              </div>
+            </div>
+            <div #autoScroll class="block-table">
+              <ng-container>
+                <div *ngFor="let data of dataSource; index as a">
+                  <div class="form-table">
+                    <div class="order-info">
+                      <div class="content">
+                        <div class="information">
+                          <div class="image" matTooltipClass="class-custom">
+                            <img [src]="data.image" alt="">
+                          </div>
+                          <div class="group-name">
+                            <div class="name">
+                              {{data.mail}}
+                            </div>
+                            <div class="product">
+                              {{data.productName}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="group-price">
+                      <div class="price">
+                        <div class="country">{{ data.size }}</div>
+                      </div>
+                      <div class="due-date">
+                        <div class="bal-due">{{ data.color }}</div>
+                      </div>
+                    </div>
+                    <div class="group-amount">
+                      <div class="sum-price">{{formatPrice(data.price)}} VNĐ</div>
+                      <div class="amount">{{data.amount}}</div>
+                    </div>
+                    <div class="group-address">
+                      <div class="address1">{{data.address1}}, {{data.address2}}, {{data.address3}}</div>
+                      <div class="address2">{{data.address4}}</div>
+                    </div>
+                    <div class="group-button">
+                      <div class="confirm">
+                        <mat-icon svgIcon="icon-delete-op" *ngIf="data.status === '0'" (click)="deleteOrder(data.orderId)"></mat-icon>
+                        <button *ngIf="data.status === '1'" (click)="deleteCart(data.orderId)">Xác nhận</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  *ngIf="dataSource && dataSource.noRecordInPage < 1"
+                  class="no-data"
+                >
+                  <!-- {{requestParam.keyWord ? 'No result found. Please try different keyword.' : 'There is no data to be displayed.'}} -->
+                  {{ noDataMsg }}
+                </div>
+              </ng-container>
+            </div>
+            <!-- =============button================ -->
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

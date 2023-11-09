@@ -1,0 +1,48 @@
+<form [formGroup]="changeNameForm"
+      novalidate>
+  <div class="group-content">
+    <div class="group-content__header">
+      {{"screen.profile.title.change-name" | translate}}
+      <mat-icon class="close"
+                (click)="onNoClick()"
+                svgIcon="icon-close"></mat-icon>
+    </div>
+    <div class="group-content__group-input"
+         style="margin-top: 8px">
+      <label class="group-content__group-input__label">{{"screen.profile.name" | translate}}</label>
+      <mat-form-field>
+        <input matInput
+               placeholder="{{
+                'screen.profile.place-new-name' | translate
+              }}"
+               formControlName="name"
+               (focus)="changeNameForm.get('name')?.clearValidators()"
+               autocomplete="off"
+               (blur)="validatorName()"
+               matTooltip="{{
+                (changeNameForm.get('name')?.status !== 'VALID'
+                  ? utils.getMessError(changeNameForm.get('name')?.errors)
+                  : ''
+                ) | translate
+              }}"
+               matTooltipClass="{{
+                changeNameForm.get('name')?.status !== 'VALID'
+                  ? 'example-tooltip-red'
+                  : ''
+              }}" />
+      </mat-form-field>
+    </div>
+    <div class="group-content__bottom">
+      <button mat-raised-button
+              (click)="submitForm()"
+              class="update">
+        {{"screen.profile.button.update" | translate}}
+      </button>
+      <button mat-raised-button
+              (click)="onNoClick()"
+              class="cancel">
+        {{"screen.profile.button.cancel" | translate}}
+      </button>
+    </div>
+  </div>
+</form>

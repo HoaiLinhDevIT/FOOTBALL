@@ -1,0 +1,119 @@
+<form [formGroup]="changePhoneForm"
+      novalidate>
+
+  <!----------------------------------- step 2: verify phone ------------------------------->
+  <div *ngIf="screen1"
+       class="change-phone">
+    <div class="group-header">
+      <div class="group-header__title">
+        {{"screen.profile.title.phone" | translate}}
+      </div>
+      <mat-icon class="close"
+                (click)="onNoClick()"
+                svgIcon="icon-close"></mat-icon>
+    </div>
+    <div class="group-content">
+      <div class="group-content__group-input">
+        <label class="group-content__group-input__label">{{"screen.profile.title.desc-phone" | translate}}</label>
+        <div class="group-items">
+          <mat-form-field class="group-item code-phone-input">
+            <mat-select formControlName="codePhone">
+              <mat-option *ngFor="let c of listCountry"
+                          [value]="c.countryId">+{{ c.countryId }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="phone-number">
+            <input matInput
+                   placeholder="{{
+                'screen.profile.place-phone' | translate
+              }}"
+                   formControlName="phone"
+                   (focus)="changePhoneForm.get('phone')?.clearValidators()"
+                   autocomplete="off"
+                   (blur)="validatorPhone()"
+                   maxlength="15"
+                   matTooltip="{{
+                (changePhoneForm.get('phone')?.status !== 'VALID'
+                  ? utils.getMessError(changePhoneForm.get('phone')?.errors)
+                  : ''
+                ) | translate
+              }}"
+                   matTooltipClass="{{
+                changePhoneForm.get('phone')?.status !== 'VALID'
+                  ? 'example-tooltip-red'
+                  : ''
+              }}" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="group-content__bottom two-btn">
+        <button class="group-content__bottom__submit"
+                (click)="stepPhone()"
+                mat-raised-button>
+          {{"screen.profile.button.send-code" | translate}}
+        </button>
+        <button mat-raised-button
+                class="group-content__bottom__back"
+                (click)="onNoClick()">
+          {{"screen.profile.button.cancel" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!----------------------------------- step 2: verify otp ------------------------------->
+  <div *ngIf="screen2"
+       class="change-phone">
+    <div class="group-header">
+      <div class="group-header__title">
+        {{"screen.profile.title.verify-otp" | translate}}
+      </div>
+      <mat-icon class="close"
+                (click)="onNoClick()"
+                svgIcon="icon-close"></mat-icon>
+    </div>
+    <div class="group-content">
+      <div class="group-content__desc">
+        <p>{{"screen.profile.title.desc-verify-otp" | translate}} +{{this.changePhoneForm.get('codePhone')?.value +
+          maskphone}}</p>
+      </div>
+      <div class="group-content__group-input">
+        <label class="group-content__group-input__label">{{"screen.profile.lbl-verify-otp" | translate}}</label>
+        <mat-form-field>
+          <input matInput
+                 placeholder="{{
+                'screen.profile.place-otp' | translate
+              }}"
+                 formControlName="otp"
+                 (focus)="changePhoneForm.get('otp')?.clearValidators()"
+                 autocomplete="off"
+                 maxlength="6"
+                 (blur)="validatorPhone()"
+                 matTooltip="{{
+                (changePhoneForm.get('otp')?.status !== 'VALID'
+                  ? utils.getMessError(changePhoneForm.get('otp')?.errors)
+                  : ''
+                ) | translate
+              }}"
+                 matTooltipClass="{{
+                changePhoneForm.get('otp')?.status !== 'VALID'
+                  ? 'example-tooltip-red'
+                  : ''
+              }}" />
+        </mat-form-field>
+      </div>
+      <div class="group-content__bottom two-btn">
+        <button class="group-content__bottom__submit"
+                (click)="stepOtp()"
+                mat-raised-button>
+          {{"screen.profile.button.save" | translate}}
+        </button>
+        <button mat-raised-button
+                class="group-content__bottom__back"
+                (click)="previousStep(1)">
+          {{"screen.profile.button.back" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

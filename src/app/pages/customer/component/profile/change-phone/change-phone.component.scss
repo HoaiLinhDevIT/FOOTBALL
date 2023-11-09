@@ -1,0 +1,119 @@
+@import "../../../../../../styles/styles-variables.scss";
+@import "../../../../../../styles/scss/breakpoints.scss";
+
+::ng-deep.mat-dialog-container {
+  padding: 0;
+}
+.change-phone{
+  font-family: 'Noto Sans';
+  font-style: normal;
+  box-shadow: 0px 0px 16px rgba(196, 194, 194, 0.12) !important;
+  border-radius: 12px !important;
+  max-width: 452px !important;
+  padding: 2rem 3.75rem;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  @include max-desktop-up-500 {
+    padding: 1rem 1rem;
+  }
+  .group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    &__title {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.25rem;
+      line-height: 27px;
+      letter-spacing: -0.014em;
+      color: #3D4147;
+    }
+
+    .close {
+      cursor: pointer;
+      width: 12px;
+    }
+  }
+
+  //-------------------------------------- step 1: verify password -----------------------------
+  .group-content {
+
+    &__group-input {
+      display: flex;
+      flex-direction: column;
+      &__label {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.004em;
+        color: #3D4147;
+      }
+    }
+
+    &__bottom {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      flex-direction: row-reverse;
+
+      button {
+        display: block;
+        background: #2191DB;
+        border-radius: 4px;
+        width: 100%;
+        height: 43px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: 0.014em;
+        color: #FFFFFF;
+
+        &:hover {
+          background: #036DB4;
+        }
+      }
+    }
+
+    // ----------------------step 2: verify phone--------------
+
+    .group-items {
+      display: flex;
+      gap: 4px;
+
+      .code-phone-input {
+        width: 70px;
+      }
+
+      .phone-number {
+        width: 100%;
+      }
+    }
+
+    &__bottom.two-btn {
+      display: flex;
+      margin-top: 1rem;
+      column-gap: 8px;
+      justify-content: space-between;
+
+      .group-content__bottom__back {
+        width: 7.688rem;
+        background: #FFFFFF;
+        border: 1px solid #2191DB;
+        color: #2191DB;
+        cursor: pointer;
+
+        &:hover {
+          background: #DDF1FF;
+        }
+      }
+
+      .group-content__bottom__submit {
+        width: 257px;
+      }
+
+    }
+  }
+
+}

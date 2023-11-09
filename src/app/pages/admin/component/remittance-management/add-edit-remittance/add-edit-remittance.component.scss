@@ -1,0 +1,100 @@
+::ng-deep .mat-raised-button {
+  font-family: "Noto Sans" !important;
+  font-style: normal !important;
+}
+
+::ng-deep .example-tooltip-red {
+  background: #ffff;
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 3px !important;
+  font-size: 10px !important;
+  color: #eb5757 !important;
+}
+::ng-deep
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled).mat-form-field-invalid
+  .mat-form-field-flex:hover
+  .mat-form-field-outline {
+  border: 1px solid red !important;
+  opacity: 1;
+  .mat-form-field-outline-start,
+  .mat-form-field-outline-gap,
+  .mat-form-field-outline-end {
+    border: none;
+  }
+}
+.block {
+  background: #fff;
+  width: 372px;
+  padding: 15px 20px;
+  .create-category {
+    width: 332px;
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .logo-top-left {
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+        .icon-logo {
+          width: 70px;
+          height: 70px;
+        }
+      }
+      .logo-top-right {
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        .icon-close {
+          cursor: pointer;
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+    .form-category {
+      width: 100%;
+      .group-input {
+        margin-top: 10px;
+        .group-item {
+          width: 100%;
+          height: 33.5px;
+        }
+      }
+    }
+    .group-btn {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+
+      button {
+        width: 158px;
+        height: 43px;
+        border-radius: 4px;
+      }
+      &__clear {
+        color: #2191db;
+        border: 1px solid #2191db;
+        background: #ffffff;
+        margin-right: 16px;
+        cursor: pointer;
+      }
+      &__clear:hover {
+        background: #ddf1ff;
+      }
+      &__submit {
+        color: #ffffff;
+        background: #2191db;
+        border: 0px;
+        cursor: pointer;
+      }
+      &__submit:hover {
+        background: #036db4;
+      }
+    }
+  }
+}

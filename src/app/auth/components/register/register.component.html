@@ -1,0 +1,147 @@
+<div class="block">
+  <div class="logo">
+    <div class="logo__icon"><mat-icon class="icon-logo" svgIcon="icon-logo-football" [routerLink]="['/home']"></mat-icon></div>
+    <div class="logo__title"><span>ĐĂNG KÝ</span></div>
+  </div>
+
+  <form [formGroup]="CustomerGroup">
+    <div class="group-content">
+      <div class="group-content__group-input">
+        <label for="">Email</label>
+        <mat-form-field class="group-item">
+          <input matInput type="text" formControlName="mail"
+          autocomplete="off"
+          maxlength="255"
+          (focus)="CustomerGroup.get('mail')?.clearValidators()"
+          (blur)="verifyMail()"
+          matTooltip="{{
+            (CustomerGroup.get('mail')?.status !== 'VALID'
+              ? utils.getMessError(CustomerGroup.get('mail')?.errors)
+              : ''
+            ) | translate
+          }}"
+          matTooltipClass="{{
+            CustomerGroup.get('mail')?.status !== 'VALID'
+              ? 'example-tooltip-red'
+              : ''
+          }}"
+          >
+        </mat-form-field>
+      </div>
+      <div class="group-content__group-input">
+        <label for="">Họ và tên</label>
+        <mat-form-field class="group-item">
+          <input matInput type="text" formControlName="userName"
+          autocomplete="off"
+          maxlength="100"
+          (focus)="CustomerGroup.get('userName')?.clearValidators()"
+          (blur)="verifyUserName()"
+          matTooltip="{{
+            (CustomerGroup.get('userName')?.status !== 'VALID'
+              ? utils.getMessError(CustomerGroup.get('userName')?.errors)
+              : ''
+            ) | translate
+          }}"
+          matTooltipClass="{{
+            CustomerGroup.get('userName')?.status !== 'VALID'
+              ? 'example-tooltip-red'
+              : ''
+          }}"
+          >
+        </mat-form-field>
+      </div>
+      <div class="group-content__group-input">
+        <label for="">Số điện thoại</label>
+        <div style="display: flex; align-items: center;">
+          <div style="height: 41.5px; border: 1px solid rgb(214, 214, 214); width: 30px; display: flex; align-items: center; margin-right: 5px;">+84</div>
+        <div style="width: calc(100% - 35px);">
+        <mat-form-field class="group-item">
+          <input
+           matInput type="text" formControlName="phone"
+          autocomplete="off"
+          maxlength="100"
+          (focus)="CustomerGroup.get('phone')?.clearValidators()"
+          (blur)="verifyPhone()"
+          matTooltip="{{
+            (CustomerGroup.get('phone')?.status !== 'VALID'
+              ? utils.getMessError(CustomerGroup.get('phone')?.errors)
+              : ''
+            ) | translate
+          }}"
+          matTooltipClass="{{
+            CustomerGroup.get('phone')?.status !== 'VALID'
+              ? 'example-tooltip-red'
+              : ''
+          }}"
+          >
+        </mat-form-field>
+        </div>
+        </div>
+
+      </div>
+      <div class="group-content__group-input">
+        <label for="">Mật khẩu</label>
+        <mat-form-field class="group-item" >
+          <input matInput  [type]="showPassword ? 'text' : 'password'" formControlName="password"
+          autocomplete="off"
+          (focus)="CustomerGroup.get('password')?.clearValidators()"
+          (blur)="validatorPass()"
+          matTooltip="{{
+            (CustomerGroup.get('password')?.status !== 'VALID'
+              ? utils.getMessError(CustomerGroup.get('password')?.errors)
+              : ''
+            ) | translate
+          }}"
+          matTooltipClass="{{
+            CustomerGroup.get('password')?.status !== 'VALID'
+              ? 'example-tooltip-red'
+              : ''
+          }}"
+          />
+          <mat-icon matSuffix class="icon-hidden-password" [svgIcon]="
+          showPassword ? 'icon-hidden-password' : 'icon-show-password'
+        " (click)="togglePassWord()"></mat-icon>
+        </mat-form-field>
+
+      </div>
+      <div class="group-content__group-input">
+        <label for="">Nhập lại Mật khẩu</label>
+        <mat-form-field class="group-item">
+          <input matInput  [type]="showCfPassword ? 'text' : 'password'" formControlName="cfpassword"
+          (focus)="CustomerGroup.get('cfpassword')?.clearValidators()"
+          (blur)="validatorCfPass()"
+          matTooltip="{{
+            (CustomerGroup.get('cfpassword')?.status !== 'VALID'
+              ? utils.getMessError(CustomerGroup.get('cfpassword')?.errors)
+              : ''
+            ) | translate
+          }}" matTooltipClass="{{
+            CustomerGroup.get('cfpassword')?.status !== 'VALID'
+              ? 'example-tooltip-red'
+              : ''
+          }}"
+          >
+          <mat-icon matSuffix class="icon-hidden-password" [svgIcon]="
+              showCfPassword
+                ? 'icon-hidden-password'
+                : 'icon-show-password'
+            " (click)="toggleCfPassWord()"></mat-icon>
+        </mat-form-field>
+
+      </div>
+      <div class="group-button">
+        <button mat-button class="group-button__signup" [ngClass]="!isDisable ? 'disable' : ''" (click)="createNewCustomer()">
+  Đăng ký
+        </button>
+      </div>
+      <hr>
+      <div class="group-bottom">
+        Bạn đã có tài khoản?
+        <span class="group-bottom__singin" [routerLink]="['/auth/login']"> Đăng nhập</span>
+      </div>
+
+    </div>
+  </form>
+
+</div>
+

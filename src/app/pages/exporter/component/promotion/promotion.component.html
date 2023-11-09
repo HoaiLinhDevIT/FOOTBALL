@@ -1,0 +1,104 @@
+<div class="block">
+    <div class="block__header">
+      <app-header
+        [menuSetting]="menuSetting"
+        [dataMenu]="dataMenu"
+        class="header-customer"
+      ></app-header>
+    </div>
+    <div class="block__content">
+        <div class="group-search">
+            <div class="operator-title">Quản lý khuyến mãi</div>
+            <div class="operator-add">
+              <button
+                (click)="dialogPromotion()"
+                class="btn-icon"
+                mat-raised-button
+                color="primary"
+              >
+                <mat-icon svgIcon="icon-plus"></mat-icon>
+                <span>Thêm mới</span>
+              </button>
+
+            </div>
+            <div class="group-search-btn">
+              <div class="search-input">
+                <mat-label class="lbl-input-search"></mat-label>
+                <mat-form-field>
+                  <input
+                    matInput
+                    maxlength="255"
+                    placeholder="Tìm kiếm"
+                    type="text"
+                    name="text"
+                  />
+                </mat-form-field>
+
+              </div>
+
+              <div class="btn-search-inline">
+                <button
+                  mat-raised-button
+                  class="btn-search"
+                  color="primary"
+                >
+                  <mat-icon
+                    class="icon-search"
+                    svgIcon="icon-search-op"
+                    matTooltip="Tìm kiếm"
+                    matTooltipPosition="below"
+                    matTooltipClass="search-tooltip"
+                  >
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        <div class="title">
+            <div class="image">
+                Tên chương trình
+            </div>
+            <div class="discount">
+                Tiền giảm
+            </div>
+            <div class="name">
+                Từ ngày
+            </div>
+            <div class="content">
+                Đến ngày
+            </div>
+            <div class="hinhthuc">
+                Hình thức
+            </div>
+            <div class="option">
+                tuỳ chọn
+            </div>
+        </div>
+       <div class="group-table">
+        <div class="group-content" *ngFor="let c of allPromotion; index as i">
+            <div class="image">
+                {{c.name}}
+            </div>
+            <div class="discount">
+              {{c.price}}
+            </div>
+            <div class="name">
+              {{c.date}}
+            </div>
+            <div class="content">
+              {{c.toDate}}
+            </div>
+            <div class="hinhthuc">
+              {{c.hinhThuc}}
+            </div>
+            <div class="option">
+                <mat-icon svgIcon="icon-edit"
+                (click)="dialogUpdate(allPromotion[i])"
+                ></mat-icon>
+
+                <mat-icon svgIcon="icon-delete-op" (click)="deleteCategory(c.id)"></mat-icon>
+            </div>
+        </div>
+       </div>
+    </div>
+</div>

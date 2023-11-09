@@ -1,0 +1,88 @@
+<div class="group-content"
+     [formGroup]="addBankForm">
+  <div class="group-content__header">
+    {{"screen.profile.title.add-bank" | translate}}
+    <mat-icon class="close"
+              (click)="onNoClick()"
+              svgIcon="icon-close"></mat-icon>
+  </div>
+  <div class="group-content__group-input">
+    <label class="mr-4">Bank name</label>
+    <div class="group-content__group-input__post-code">
+      <div>
+        <mat-form-field class="bankName">
+          <input matInput
+                 maxlength="100"
+                 formControlName="bankName"
+                 (blur)="validatorBank()"
+                 autocomplete="off"
+                 matTooltip="{{
+                          (addBankForm.get('phone')?.status !== 'VALID'
+                            ? utils.getMessError(addBankForm.get('bankName')?.errors)
+                            : ''
+                          ) | translate
+                        }}"
+                 matTooltipClass="{{
+                          addBankForm.get('bankName')?.status !== 'VALID'
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}" />
+        </mat-form-field>
+      </div>
+      <div class="group-content__group-input__code-address-display">
+        <div class="group-content__group-input__code-address-display__branch">
+          <label class="mr-4">Branch</label>
+          <mat-form-field class=" branch">
+            <input matInput
+                   maxlength="3"
+                   (blur)="validatorBranch()"
+                   matTooltip="{{
+                            (addBankForm.get('branch')?.status !== 'VALID'
+                              ? utils.getMessError(addBankForm.get('branch')?.errors)
+                              : ''
+                            ) | translate
+                          }}"
+                   matTooltipClass="{{
+                            addBankForm.get('branch')?.status !== 'VALID'
+                              ? 'example-tooltip-red'
+                              : ''
+                          }}"
+                   formControlName="branch" />
+          </mat-form-field>
+        </div>
+        <div class="group-content__group-input__code-address-display__accNum">
+          <label class="mr-4">Account number</label>
+          <mat-form-field class="accNum">
+          <input matInput
+                 maxlength="8"
+                 formControlName="accountNumber"
+                 (blur)="validatorAccNum()"
+                 matTooltip="{{
+                          (addBankForm.get('accountNumber')?.status !== 'VALID'
+                            ? utils.getMessError(addBankForm.get('accountNumber')?.errors)
+                            : ''
+                          ) | translate
+                        }}"
+                 matTooltipClass="{{
+                          addBankForm.get('accountNumber')?.status !== 'VALID'
+                            ? 'example-tooltip-red'
+                            : ''
+                        }}" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group-content__bottom">
+    <button mat-raised-button
+            (click)="cancel()"
+            class="cancel">
+      {{"screen.profile.button.cancel" | translate}}
+    </button>
+    <button mat-raised-button
+            (click)="submitForm()"
+            class="update">
+      {{"screen.profile.button.update" | translate}}
+    </button>
+  </div>
+</div>

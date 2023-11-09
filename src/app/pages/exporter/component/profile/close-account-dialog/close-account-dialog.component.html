@@ -1,0 +1,26 @@
+<div class="reason">
+  <div class="reason__header">
+    <div class="reason__header__title">{{"screen.profile.title.close-account" | translate}}</div>
+    <mat-icon (click)="onNoClick()" svgIcon="icon-close"></mat-icon>
+  </div>
+  <div class="reason__content">
+    <div class="reason__content__title">
+      {{"screen.profile.title.choose-option" | translate}}
+    </div>
+    <mat-radio-group class="reason__content__items">
+      <mat-radio-button class="reason__content__items__item" *ngFor="let reason of reasons" [value]="reason | translate"
+        [checked]="reason === 'screen.profile.reason-lock-account-1'" (change)="changeRadio($event)">
+        {{reason | translate}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <div class="reason__content__desc">
+      * {{"screen.profile.desc-lock-account" | translate}}
+    </div>
+  </div>
+  <div class="reason__bottom" mat-dialog-actions>
+    <button class="reason__bottom__cancel" mat-button (click)="onNoClick()">{{"screen.profile.button.cancel" |
+      translate}}</button>
+    <button class="reason__bottom__ok" mat-button (click)="lockAccount()">{{"screen.profile.button.close-account" |
+      translate}}</button>
+  </div>
+</div>
